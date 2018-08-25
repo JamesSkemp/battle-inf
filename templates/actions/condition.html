@@ -1,0 +1,51 @@
+<div ng-click="toggleSelection(condition, $event)" ng-class="{selected:condition.selected}">
+    IF
+
+    <span ng-if="!editing">
+        <span class="code_highlight code_variable">{{condition.target}}</span>
+        {{condition.functionName}}
+
+        <span ng-if="condition.functionName === 'Stat'">
+            <span class="code_highlight code_variable">{{condition.stat}}</span>
+            {{condition.comp}}
+            <span class="code_highlight code_variable">{{condition.constant}}</span>
+        </span>
+
+        <span ng-if="condition.functionName === 'Status Effected By'">
+            <span class="code_highlight code_variable">{{condition.effect}}</span>
+        </span>
+
+        <span ng-if="condition.functionName === 'Status Not Effected By'">
+            <span class="code_highlight code_variable">{{condition.effect}}</span>
+        </span>
+    </span>
+    <span ng-if="editing">
+        <select class="code_variable" ng-model="condition.target" ng-options="o for o in conditionTargets" ng-click="$event.stopPropagation()"></select>
+        <select class="code_variable" ng-model="condition.functionName" ng-options="o for o in conditionFunctionOptions" ng-click="$event.stopPropagation()"></select>
+
+        <span ng-if="condition.functionName === 'Stat'">
+            <select class="code_variable" ng-model="condition.stat" ng-options="o for o in statOptions" ng-click="$event.stopPropagation()"></select>
+            <select class="code_comparitor" ng-model="condition.comp" ng-options="o for o in comparitors" ng-click="$event.stopPropagation()"></select>
+            <select class="code_comparitor" ng-model="condition.constant" ng-options="o for o in constantOptions" ng-click="$event.stopPropagation()"></select>
+        </span>
+
+        <span ng-if="condition.functionName === 'Status Effected By'">
+            <select class="code_comparitor" ng-model="condition.effect" ng-options="o for o in statusEffects" ng-click="$event.stopPropagation()"></select>
+        </span>
+
+        <span ng-if="condition.functionName === 'Status Not Effected By'">
+            <select class="code_comparitor" ng-model="condition.effect" ng-options="o for o in statusEffects" ng-click="$event.stopPropagation()"></select>
+        </span>
+
+    </span>
+
+    <div ng-include="'templates/actions/main.html'" ng-init="actionsContainer = condition"></div>
+    
+    <span ng-if="editing">
+        <!-- EDIT OPTIONS -->
+        <div class="code_edit_buttons" ng-if="condition.selected">
+            <select class="code_comparitor" ng-model="statement.newAction" ng-options="o for o in actionTypes" ng-click="$event.stopPropagation()"></select>
+            <button class="button short" ng-click="addSubAction(statement, $event)">Add</button>
+        </div>
+    </span>
+</div>

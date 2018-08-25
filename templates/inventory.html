@@ -1,0 +1,73 @@
+<style>
+    .code_area *
+    {
+        
+    }
+    
+    .code_area .fa
+    {
+        font-family: FontAwesome;
+    }
+    
+    .code_area .code_action_box.selected
+    {
+        background:rgba(100,100,100,0.5);
+        padding-bottom:10px;
+    }
+    
+    /* <select> */
+    .code_area select { color:black; border:1px solid #AAA; }
+    .code_area select * { color:black; }
+    
+    .code_action_box
+    {
+        padding-left:50px;
+        padding-top:10px;
+    }
+    
+    
+    
+    .code_highlight
+    {
+        color:black;
+        padding:3px;
+        padding-left:10px;
+        padding-right:10px;
+        border-radius:15px;
+    }
+    .code_variable { background:#60E860; }
+    .code_comparitor { background:#FFF; }
+    .code_special { background:#FFA53D; }
+    .code_function { background:#3A8CCB; }
+    
+    .code_edit_buttons
+    {
+        padding-left:20px;
+        margin-top:10px;
+    }
+</style>
+
+<input type="text" ng-model="itemFilter.name" style="color:black;border:1px solid #AAA;padding:3px;" placeholder="Filter Items">
+
+<button class="button" ng-click="sellAll()">Sell All</button>
+<button class="button" ng-click="sellSelected()">Sell Selected</button>
+
+<button class="button" style="float:right" ng-class="{selected:editingLogic}" ng-click="editingLogic = !editingLogic">Edit Inventory Logic</button>
+<button class="button red" style="float:right" ng-class="{selected:editingLogic}" ng-click="saveLogic()">Save</button>
+
+<div style="clear:both;height:10px;"></div>
+
+<div ng-if="editingLogic" style="margin-bottom:10px;">
+    <div ng-repeat="root in actionsRootContainer" class="code_area" style="border:1px solid white;padding-bottom:10px;padding-left:10px;padding-top:0px;overflow:hidden">
+        <div ng-include="'templates/inventory_actions/main.html'" ng-init="actionsContainer = root" style="margin-left:-50px;"></div>
+
+        <div style="margin-top:10px;">
+            <select class="code_variable" ng-model="actionsRoot.newAction" ng-options="o for o in actionTypes" ng-click="$event.stopPropagation()"></select>
+            <button class="button short" ng-click="addSubAction(actionsRoot, $event)">Add</button>
+        </div>
+    </div>
+</div>
+
+<div ng-repeat="item in items | filter:itemFilter">
+    <div ng-include="'templates/other/item.html'" ng-init="buttons = ['sell','select']" style="float:left;margin-right:10px;width:350px;"></div>
+</div>

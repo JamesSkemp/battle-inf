@@ -1,0 +1,62 @@
+<style>
+    .hero_fixed
+    {
+        position:fixed!important;
+        top:0px;
+        border-bottom:1px solid #666;
+    }
+    
+    .equipment_fixed
+    {
+        position:fixed!important;
+        top:100px;
+    }
+    
+    .selected_item
+    {
+        background:#444!important;
+    }
+    
+    .item_short_display
+    {
+        height:25px;
+    }
+</style>
+
+<div style="width:100%;height:100px;position:relative">
+    <div id="hero_display" style="background:#333;border-bottom:1px solid #666;position:relative">
+        <input type="text" ng-model="itemFilter.name" style="position:absolute;bottom:10px;right:10px;color:black;border:1px solid #AAA;padding:3px;"
+               placeholder="Filter Items">
+        <div ng-include="'templates/other/hero.html'"></div>
+        <div style="clear:both"></div>
+    </div>
+</div>
+
+<div id="hero_equipment_display" style="float:left;width:50%;">
+    <div style="padding-bottom:5px;margin-bottom:10px;border-bottom:1px solid #666;font-size:20px;">
+        EQUIPMENT
+    </div>
+
+    <div ng-repeat="listItem in hero.equipmentList">
+        <button ng-show="listItem.item" class="button tiny" style="float:left;margin-right:10px;width:20px;" ng-click="listItem.item.collapsed = !listItem.item.collapsed">
+            <i class="fa" ng-class="{'fa-plus':listItem.item.collapsed,'fa-minus':!listItem.item.collapsed}" style="color:inherit"></i>
+        </button>
+
+        <div ng-include="'templates/other/item.html'" ng-if="listItem.item !== null"
+             ng-init="item = listItem.item;listItem = listItem; buttons = equipmentButtons"></div>
+
+        <div ng-if="listItem.item === null" class="item darkgray_text bold_text" style="font-size:14px;">
+            {{listItem.displayName}}: None
+        </div>
+    </div>
+</div>
+
+<div style="float:right;width:50%;padding-left:10px;">
+    <div style="padding-bottom:5px;margin-bottom:10px;border-bottom:1px solid #666;font-size:20px;">
+        INVENTORY
+    </div>
+    
+    <div ng-repeat="item in items | filter:itemFilter" ng-class="{selected_item:selectedItem === item}">
+        <div ng-include="'templates/other/item.html'" ng-init="buttons = inventoryButtons"></div>
+    </div>
+</div>

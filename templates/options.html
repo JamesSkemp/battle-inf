@@ -1,0 +1,11 @@
+    <button class="button" ng-click="$parent.save()">Save</button>
+    <button class="button" ng-click="$parent.load()">Load</button>
+    <button class="button" ng-click="$parent.reset()">Reset</button>
+    
+    <br><br>
+    
+    <div class="button" ng-click="$parent.player.autoSave = !$parent.player.autoSave" ng-class="{selected:$parent.player.autoSave}">Auto Save (30 sec.)</div>
+    
+    <br><br>
+    
+    <button class="button" ng-click="randomMonster()">Random Monster</button>

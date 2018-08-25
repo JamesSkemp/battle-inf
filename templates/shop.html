@@ -1,0 +1,31 @@
+<div style="float:left;margin-right:50px;">
+    <span style="font-size:10px;">ARMOR SMITH</span><br>
+    <span style="font-size:20px;">{{armorAmount}} /</span>
+    <span style="font-size:12px;">{{armorAmountOff}}% off</span><br>
+</div>
+<div style="float:left;margin-right:50px;">
+    <span style="font-size:10px;">WEAPON SMITH</span><br>
+    <span style="font-size:20px;">{{weaponAmount}} /</span>
+    <span style="font-size:12px;">{{weaponAmountOff}}% off</span><br>
+</div>
+<div style="float:left;margin-right:50px;">
+    <span style="font-size:10px;">GEMCUTTER</span><br>
+    <span style="font-size:20px;">{{gemAmount}} /</span>
+    <span style="font-size:12px;">{{gemAmountOff}}% off</span><br>
+</div>
+<div style="float:left;margin-right:50px;">
+    <span style="font-size:10px;">NEXT RESTOCK</span><br>
+    <span style="font-size:20px;">{{player.shopRefreshTimeRemaining}}</span>
+</div>
+
+<div style="clear:both;height:10px;"></div>
+    
+<div>
+    <div ng-if="player.shopItems.length === 0" style="font-size:16px;">
+        There are no items for you to buy. Build an armor or weapon smith to create items for you.
+    </div>
+
+    <div ng-repeat="item in player.shopItems" style="margin-bottom:10px;">
+        <div ng-include="'templates/other/item.html'" ng-init="buttons = ['buy']" style="float:left;margin-right:10px;width:350px;"></div>
+    </div>
+</div>

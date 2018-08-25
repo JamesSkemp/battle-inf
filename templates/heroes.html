@@ -1,0 +1,105 @@
+<style>
+    .upgrade
+    {
+        float:left;
+        margin-bottom:10px;
+        padding-bottom:10px;
+        border-bottom:1px solid #666;
+        width:48%;
+    }
+    
+    .upgrade.odd
+    {
+        margin-right:4%;
+    }
+    
+    .training_overlay
+    {
+        position:absolute;
+        background:rgba(51,51,51,0.5);
+        top:0px;
+        bottom:0px;
+        left:0px;
+        right:0px;
+        line-height:100%;
+    }
+    
+    .training_overlay .content
+    {
+        text-align:center;
+        position:absolute;
+        top:50%;
+        width:100%;
+        font-size:30px;
+        margin-top:-10px;
+        text-shadow: 0px 0px 10px #666,0px 0px 10px #666,0px 0px 10px #666;
+        cursor:pointer;
+    }
+</style>
+
+<div style="padding-bottom:5px;margin-bottom:5px;border-bottom:1px solid #666">
+    <span style="font-size:20px;">Battle Group</span>
+    <br>
+    <span class="gray_text">This group will participate in battles. Make sure none of them are in training!</span>
+</div>
+
+<div ng-repeat="hero in $parent.player.heroes" style="position:relative;cursor:pointer" ng-click="setReserve(hero)">
+    <div ng-if="hero.trainingAreaIndex >= 0" class="training_overlay" ng-click="$event.stopPropagation();">
+        <a href="#training" class="content">Training</a>
+    </div>
+    <div ng-if="hero.reserve && hero.trainingAreaIndex === -1" class="training_overlay" ng-click="setUnreserve(hero, $event)">
+        <div class="content">Reserve</div>
+    </div>
+    
+    <div style="float:right;width:30px;height:10px;">
+        
+    </div>
+    
+    <div style="position:absolute;padding-top:10px;right:0px;z-index:10">
+        <button class="button short" ng-click="swapUp($index, $event)">
+            <i class="fa fa-arrow-up" style="color:inherit"></i>
+        </button>
+        <br>
+        <button class="button short" ng-click="swapDown($index, $event)">
+            <i class="fa fa-arrow-down" style="color:inherit"></i>
+        </button>
+    </div>
+    
+    <div ng-include="'templates/other/hero.html'"></div>
+</div>
+
+
+
+
+
+
+
+
+<div style="font-size:20px;margin-bottom:5px;padding-bottom:5px;border-bottom:1px solid #666;margin-top:50px;">
+    UPGRADES
+</div>
+
+<div ng-repeat="upgrade in upgrades" class="upgrade" ng-class-odd="'odd'">
+    <div style="font-size:16px;">
+        {{upgrade.name}}
+        <span style="float:right;font-size:16px;">
+            {{upgrade.currentValue()}}
+            <span ng-if="upgrade.currentValue() < upgrade.maxValue" style="font-size:inherit">
+                <i class="fa fa-chevron-right" style="font-size:14px;"></i>
+                {{upgrade.nextValueFunction()}}
+            </span>
+        </span>
+    </div>
+    <div class="gray_text" style="margin-bottom:10px;">{{upgrade.description}}</div>
+
+    <span ng-if="upgrade.currentValue() < upgrade.maxValue">
+        <span style="float:left;line-height:27px;font-size:16px;">
+            ${{addNumberCommas(upgrade.nextValueCostFunction())}}
+        </span>
+
+        <button class="button" style="float:right" ng-click="doUpgrade(upgrade)"
+                ng-class="{disabled:!canUpgrade(upgrade)}">Upgrade</button>
+    </span>
+
+    <div style="clear:both;"></div>
+</div>

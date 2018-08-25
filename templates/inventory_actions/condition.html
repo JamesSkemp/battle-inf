@@ -1,0 +1,22 @@
+<div ng-click="toggleSelection(condition, $event)" ng-class="{selected:condition.selected}">
+    IF
+
+    <select class="code_variable" ng-model="condition.condition" ng-options="o for o in conditionOptions" ng-click="$event.stopPropagation()"></select>
+
+    <span ng-if="condition.condition === 'Rarity'">
+        <select class="code_comparitor" ng-model="condition.comp" ng-options="o for o in comparitors" ng-click="$event.stopPropagation()"></select>
+        <select class="code_comparitor" ng-model="condition.rarity" ng-options="obj.value as obj.name for obj in rarityOptions" ng-click="$event.stopPropagation()"></select>
+    </span>
+
+    <span ng-if="condition.condition === 'Level'">
+        <select class="code_comparitor" ng-model="condition.comp" ng-options="o for o in comparitors" ng-click="$event.stopPropagation()"></select>
+        <select class="code_comparitor" ng-model="condition.level" ng-options="o for o in levelOptions" ng-click="$event.stopPropagation()"></select>
+    </span>
+    
+    <div ng-include="'templates/inventory_actions/main.html'" ng-init="actionsContainer = condition"></div>
+    
+    <div class="code_edit_buttons" ng-if="condition.selected">
+        <select class="code_comparitor" ng-model="statement.newAction" ng-options="o for o in actionTypes" ng-click="$event.stopPropagation()"></select>
+        <button class="button short" ng-click="addSubAction(statement, $event)">Add</button>
+    </div>
+</div>

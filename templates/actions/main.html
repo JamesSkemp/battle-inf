@@ -1,0 +1,78 @@
+<div ng-repeat="statement in actionsContainer.actions" class="code_action_box" ng-class="{selected:statement.selected && editing}">
+    <div ng-show="editing" style="float:right;margin-right:10px;">
+        <button class="button short" ng-if="statement.type === 'Condition'" ng-click="toggleSelection(statement, $event)" ng-class="{selected:statement.selected}">Edit</button>
+        
+        <button class="button short" ng-click="moveActionUp(actionsContainer, statement, $event)"><i class="fa fa-arrow-up" style="color:inherit"></i></button>
+        <button class="button short" ng-click="moveActionDown(actionsContainer, statement, $event)"><i class="fa fa-arrow-down" style="color:inherit"></i></button>
+        <button class="button short" ng-click="removeAction(actionsContainer, statement, $event)"><i class="fa fa-times" style="color:inherit"></i></button>
+    </div>
+    
+    <!-- CONDITIONAL -->
+    <div ng-if="statement.type === 'Condition'" class="code_editable">
+        <div ng-include="'templates/actions/condition.html'" ng-init="condition = statement;parentActionsContainer = actionsContainer;"></div>
+    </div>
+    
+    <!-- ACTION -->
+    <div ng-if="statement.type === 'Action'" class="code_editable">
+        <span ng-if="!editing">
+            HERO <i class="fa fa-chevron-right"></i> <span class="code_highlight code_function">{{statement.code}}</span>
+            
+            <span ng-if="statement.code === 'Use Skill'">
+                <span class="code_highlight code_variable">{{statement.skillName}}</span>
+                on
+            </span>
+            
+            <span ng-if="statement.code !== 'Defend'">
+                <span class="code_highlight code_special">{{statement.target}}</span>
+            </span>
+        </span>
+        <span ng-if="editing">
+            HERO <i class="fa fa-chevron-right"></i> <select class="code_function" ng-model="statement.code" ng-options="o for o in heroActions" ng-click="$event.stopPropagation()"></select>
+            
+            <span ng-if="statement.code === 'Use Skill'">
+                <select class="code_special" ng-model="statement.skillName" ng-options="o for o in heroSkills" ng-click="$event.stopPropagation()"></select>
+                on
+            </span>
+            
+            <span ng-if="statement.code !== 'Defend'">
+                <select class="code_special" ng-model="statement.target" ng-options="o for o in conditionTargets" ng-click="$event.stopPropagation()"></select>
+            </span>
+            
+            <!-- EDIT -->
+            <div class="code_edit_buttons" ng-if="statement.selected">
+                <button class="button bordered" ng-click="removeAction(actionsContainer, statement, $event)">Remove ({{statement.type}})</button>
+            </div>
+        </span>
+    </div>
+    
+    <!-- SELECT TARGET -->
+    <div ng-if="statement.type === 'Select Target'" class="code_editable">
+        <span ng-if="!editing">
+            <span class="code_highlight code_special">Select</span>
+            <span class="code_highlight code_function">{{statement.select}}</span>
+            {{statement.target}}
+            <span ng-if="statement.select === 'With Status Effect'">
+                <span class="code_highlight code_function">{{statement.effect}}</span>
+            </span>
+        </span>
+        <span ng-if="editing">
+            <span class="code_highlight code_special">Select</span>
+            <select class="code_function" ng-model="statement.targetType" ng-options="o for o in selectTargetTypes" ng-click="$event.stopPropagation()"></select>
+            <select class="code_function" ng-model="statement.select" ng-options="o for o in selectTargetOptions" ng-click="$event.stopPropagation()"></select>
+            
+            <span ng-if="statement.select === 'With Status Effect'">
+                <select class="code_function" ng-model="statement.effect" ng-options="o for o in statusEffects" ng-click="$event.stopPropagation()"></select>
+            </span>
+            
+            <span ng-if="statement.select === 'With Least' || statement.select === 'With Most'">
+                <select class="code_function" ng-model="statement.stat" ng-options="o for o in statOptions" ng-click="$event.stopPropagation()"></select>
+            </span>
+            
+            <!-- EDIT -->
+            <div class="code_edit_buttons" ng-if="statement.selected">
+                <button class="button bordered" ng-click="removeAction(actionsContainer, statement, $event)">Remove ({{statement.type}})</button>
+                <button class="button bordered" ng-click="removeAction(actionsContainer, statement, $event)"><i class="fa fa-up-arrow"></i></button>
+            </div>
+        </span>
+    </div>
+</div>

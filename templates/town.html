@@ -1,0 +1,84 @@
+<style>
+    #progress
+    {
+        transition: width 1s ease-in-out;
+        -moz-transition: width 1s ease-in-out;
+        -webkit-transition: width 1s ease-in-out;
+        width:0%;
+    }
+    
+    .player_building
+    {
+        float:left;
+        margin-right:20px;
+        margin-bottom:10px;
+        
+        transition: top 1s ease-in-out;
+        -moz-transition: top 1s ease-in-out;
+        -webkit-transition: top 1s ease-in-out;
+    }
+</style>
+
+<div style="position:relative;height:75px;font-size:16px;">
+    Progress towards claiming more land
+    
+    <div style="left:10px;bottom:15px;right:10px;height:30px;position:absolute;background:#555;overflow:hidden">
+        <div id="progress" class="green_background" style="width:{{landProgressPercent()}}%;height:100%;position:relative">
+            <div style="position:absolute;top:0px;right:5px;line-height:28px;font-size:20px;font-weight:bold;color:#333">
+                {{landProgressPercent()}}%
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <div ng-repeat="building in buildings" style="padding-bottom:20px;">
+        <button class="button short" style="float:left;margin-right:10px;width:20px;" ng-click="building.collapsed = !building.collapsed">
+            <i class="fa" ng-class="{'fa-plus':building.collapsed,'fa-minus':!building.collapsed}" style="color:inherit"></i>
+        </button>
+        
+        <div style="float:right;text-align:right">
+            <button ng-if="!building.single || !player.buildings[building.name]" class="button" style="font-size:12px;" ng-click="buildNew(building)">
+                Build New
+            </button>
+            <br>
+            <span ng-if="building.cost > 0">
+                ${{addNumberCommas(building.cost)}}
+                /
+                {{building.space}} Land
+            </span>
+        </div>
+        
+        
+        <div style="padding-bottom:5px;margin-bottom:5px;border-bottom:1px solid #666;">
+            <div style="font-size:20px;">
+                {{building.name}}
+                ({{player.buildings[building.name] ? player.buildings[building.name].length : 0}})
+            </div>
+            <span class="gray_text" style="padding-right:20px;">{{building.description}}</span>
+        </div>
+        <div class="player_building" ng-show="!building.collapsed" ng-if="player.buildings[building.name]" ng-repeat="playerBuilding in player.buildings[building.name]">
+            <div style="float:left;margin-right:10px;">
+                <button class="button short" style="font-size:12px;width:20px;" ng-click="upgradeBuilding(playerBuilding, $event.target)" qtip2="${{addNumberCommas(building.upgradeCost * playerBuilding.level)}}">
+                    <i class="fa fa-arrow-up" style="color:inherit"></i>
+                </button>
+
+                <button ng-hide="building.cannotSell" class="button short" style="font-size:12px;width:20px;" ng-click="sellBuilding(building, $index)">
+                    <i class="fa fa-times" style="color:inherit"></i>
+                </button>
+            </div>
+            
+            <span style="font-size:16px;">{{building.name}}</span>
+            
+            <div style="clear:both;"></div>
+            
+            <div style="float:right">
+                ${{building.gpm * playerBuilding.level}} / Min
+            </div>
+            <span class="gray_text">Lv. {{playerBuilding.level}}</span>
+        </div>
+        
+        <div style="clear:both;"></div>
+    </div>
+</div>

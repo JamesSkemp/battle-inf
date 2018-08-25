@@ -1,0 +1,133 @@
+<style>
+    /* Container */
+    .code_area *
+    {
+        
+    }
+    
+    .code_area .fa
+    {
+        font-family: FontAwesome;
+    }
+    
+    .code_area .code_action_box.selected
+    {
+        background:rgba(100,100,100,0.5);
+        padding-bottom:10px;
+    }
+    
+    /* <select> */
+    .code_area select { color:black; border:1px solid #AAA; }
+    .code_area select * { color:black; }
+    
+    .code_action_box
+    {
+        padding-left:50px;
+        padding-top:10px;
+    }
+    
+    
+    
+    .code_highlight
+    {
+        color:black;
+        padding:3px;
+        padding-left:10px;
+        padding-right:10px;
+        border-radius:15px;
+    }
+    .code_variable { background:#60E860; }
+    .code_comparitor { background:#FFF; }
+    .code_special { background:#FFA53D; }
+    .code_function { background:#3A8CCB; }
+    
+    .code_edit_buttons
+    {
+        padding-left:20px;
+        margin-top:10px;
+    }
+    
+    .test_area input
+    {
+        color:black;
+        border:1px solid #AAA;
+        text-align:right;
+    }
+    
+    .select_black_text
+    {
+        color:black;
+        background:white;
+    }
+    .select_black_text *
+    {
+        color:black;
+    }
+    
+    textarea
+    {
+        width:100%;
+        color:black;
+        height:100px;
+        resize:none;
+        border:1px solid #AAA;
+    }
+</style>
+
+<div ng-include="'templates/other/hero.html'"></div>
+
+
+<div ng-show="exporting" style="margin-top:10px;margin-bottom:20px;">
+    <div style="font-size:20px;">Export</div>
+    <textarea>{{exportCode}}</textarea>
+    <button class="button" style="float:right;margin-top:10px;" ng-click="exporting = false">Close</button>
+    <div style="clear:both;"></div>
+</div>
+
+<div ng-show="importing" style="margin-top:10px;margin-bottom:20px;">
+    <div style="font-size:20px;">Import</div>
+    <textarea ng-model="importCode"></textarea>
+    <div style="float:right;margin-top:10px;">
+        <button class="button" ng-click="importing = false">Close</button>
+        <button class="button" ng-click="importActions()">Import</button>
+    </div>
+    <div style="clear:both;"></div>
+</div>
+
+<div ng-include="'templates/actions/testing_area'"></div>
+
+<div>
+    <button class="button" ng-class="{selected:editing}" ng-click="editing = !editing">
+        Edit
+    </button>
+    <button class="button" ng-class="{red:needsSave}" ng-click="saveActions()">Save</button>
+    <button class="button" ng-class="{selected:exporting}" ng-click="exporting = !exporting; importing = false; testing = false; exportActions()">
+        Export
+    </button>
+    <button class="button" ng-class="{selected:importing}" ng-click="importing = !importing; exporting = false; testing = false; ">
+        Import
+    </button>
+    <button class="button" ng-class="{selected:testing}" ng-click="testing = !testing; importing = false; exporting = false;">
+        Test
+    </button>
+    
+    <button class="button" style="float:right" ng-click="getCode()">Get Code</button>
+</div>
+
+<div style="line-height:60px;padding-left:0px;">
+    <div style="float:right;font-size:20px;">
+        {{countActions(hero.actionsRoot.actions)}}
+        /
+        {{hero.level + 5}}
+    </div>
+    The logic stops when a <b style="background:black;padding:3px;">HERO <i class="fa fa-chevron-right"></i></b> line is successfully executed
+</div>
+
+<div ng-repeat="root in actionsRootContainer" class="code_area" style="border:1px solid white;padding-bottom:10px;padding-left:10px;padding-top:0px;overflow:hidden">
+    <div ng-include="'templates/actions/main.html'" ng-init="actionsContainer = root" style="margin-left:-50px;"></div>
+    
+    <div ng-if="editing" style="margin-top:30px;">
+        <select class="code_variable" ng-model="hero.actionsRoot.newAction" ng-options="o for o in actionTypes" ng-click="$event.stopPropagation()"></select>
+        <button class="button short" ng-click="addSubAction(hero.actionsRoot, $event)">Add</button>
+    </div>
+</div>

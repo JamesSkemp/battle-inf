@@ -1,0 +1,138 @@
+<style>
+    table {
+        border-collapse: collapse;
+    }
+    
+    table td {
+        vertical-align: top;
+    }
+    
+    .req_not_met
+    {
+        color:#888;
+    }
+</style>
+
+<div ng-include="'templates/other/hero.html'"></div>
+
+<div style="padding-bottom:5px;margin-bottom:10px;border-bottom:1px solid #666;font-size:20px;margin-top:20px;">
+    LEARNED USABLE
+</div>
+
+<table>
+    <tr ng-repeat="(skillName, skill) in heroUsableSkills" class="knownSkill">
+        <td style="padding-bottom:10px;">
+            {{skillName}}
+        </td>
+        <td width="20"></td>
+        <td>Lv. {{skill.level}}</td>
+        <td width="20"></td>
+        <td>{{skill.uses}} / {{skillReqExp(skillName, skill.level)}} xp</td>
+        <td width="20"></td>
+        <td>{{skillTree[skillName].desc}}</td>
+    </tr>
+</table>
+
+<div style="padding-bottom:5px;margin-bottom:10px;border-bottom:1px solid #666;font-size:20px;margin-top:20px;">
+    NEW USABLE
+</div>
+
+<table>
+    <tr>
+        <td style="height:25px;">
+            
+        </td>
+        <td width="20"></td>
+        <td><b>Name</b></td>
+        <td width="20"></td>
+        <td><b>Cost</b></td>
+        <td width="20"></td>
+        <td><b>Requirements</b></td>
+        <td width="20"></td>
+        <td><b>Description</b></td>
+    </tr>
+    <tr ng-repeat="(skillName, skill) in usableSkills" class="unknownSkill" ng-if="skill !== null">
+        <td>
+            <button ng-if="skill.canLearn" class="button short" style="margin-bottom:10px;" ng-click="learnSkill(skill)" ng-class="{disabled:skill.cost > player.money}">Learn</button>
+        </td>
+        <td></td>
+        <td>{{skillName}}</td>
+        <td></td>
+        <td ng-class="{gray_text:skill.cost > player.money}">
+            ${{addNumberCommas(skill.cost)}}
+        </td>
+        <td></td>
+        <td>
+            <div ng-if="skill.req.length === 0" class="gray_text">
+                No requirements
+            </div>
+            
+            <div ng-repeat="req in skill.req" ng-class="{req_not_met:hero.skills[skill.req[$index]] && hero.skills[skill.req[$index]].level < skill.reqLevel[$index]}">
+                {{req}} &mdash; Lv. {{skill.reqLevel[$index]}}
+            </div>
+        </td>
+        <td></td>
+        <td>{{skillTree[skillName].desc}}</td>
+    </tr>
+</table>
+
+<div style="padding-bottom:5px;margin-bottom:10px;border-bottom:1px solid #666;font-size:20px;margin-top:20px;">
+    PASSIVE
+</div>
+
+<table>
+    <tr ng-repeat="(skillName, skill) in heroPassiveSkills" class="knownSkill">
+        <td style="padding-bottom:10px;">
+            {{skillName}}
+        </td>
+        <td width="20"></td>
+        <td>Lv. {{skill.level}}</td>
+        <td width="20"></td>
+        <td>{{skill.uses}} / {{skill.next}} xp</td>
+        <td width="20"></td>
+        <td>{{skillTree[skillName].desc}}</td>
+    </tr>
+</table>
+
+<div style="padding-bottom:5px;margin-bottom:10px;border-bottom:1px solid #666;font-size:20px;margin-top:20px;">
+    NEW PASSIVE
+</div>
+
+<table>
+    <tr>
+        <td style="height:25px;">
+            
+        </td>
+        <td width="20"></td>
+        <td><b>Name</b></td>
+        <td width="20"></td>
+        <td><b>Cost</b></td>
+        <td width="20"></td>
+        <td><b>Requirements</b></td>
+        <td width="20"></td>
+        <td><b>Description</b></td>
+    </tr>
+    <tr ng-repeat="(skillName, skill) in passiveSkills" class="unknownSkill" ng-if="skill !== null">
+        <td>
+            <button ng-if="skill.canLearn" class="button short" style="margin-bottom:10px;" ng-click="learnSkill(skill)" ng-class="{disabled:skill.cost > player.money}">Learn</button>
+        </td>
+        <td></td>
+        <td>{{skillName}}</td>
+        <td></td>
+        <td ng-class="{gray_text:skill.cost > player.money}">
+            ${{addNumberCommas(skill.cost)}}
+        </td>
+        <td></td>
+        <td>
+            <div ng-if="skill.req.length === 0" class="gray_text">
+                No requirements
+            </div>
+            
+            <div ng-repeat="req in skill.req">
+                {{req}}
+            </div>
+        </td>
+        <td width="20"></td>
+        <td>{{skillTree[skillName].desc}}</td>
+    </tr>
+</table>

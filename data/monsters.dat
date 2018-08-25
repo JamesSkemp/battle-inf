@@ -1,0 +1,15 @@
+Rat_Man	3	1.5	0	1.2	0	1
+Wolf	3.3	1.7	0	1	0	1
+Spider	2.5	1.7	0	1.2	0	1
+	TIER 2					
+Kobold	4	2.2	0	1	1	2
+Boar	6	2	0	1.2	0	2
+Slime	4	1.5	0	0.8	2	2
+	TIER 3					
+Zombie	8	2	0	0.8	0	3
+Harpy	4	2	0	1	2	3
+Bear	8	1	0	1	0	3
+	TIER 4					
+Troll	8	2.4	0	0.9	0	4
+Golem	8	2	0	0.7	2	4
+Giant_Scorpion	7	2	0	1.2	0	4

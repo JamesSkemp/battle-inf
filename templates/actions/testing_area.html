@@ -1,0 +1,31 @@
+<div ng-show="testing" class="test_area" style="margin-top:10px;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid #666">
+    <button class="button" ng-click="testActions()" style="float:right">Run Test</button>
+    <div style="font-size:20px;">Test</div>
+    <div ng-repeat="testHero in playerTestCopy.heroes" style="float:left;margin-right:20px;">
+        <span ng-class="{green_text:($index === heroIndex),bold_text:($index === heroIndex)}">
+            {{testHero.name}}
+        </span>
+        
+        <table>
+            <tr ng-repeat="statName in testStatsOrder" style="margin-right:20px;">
+                <td><span style="color:#AAA">{{statDisplayString(statName)}}</span></td>
+                <td><input type="text" ng-model="testHero.battleStats[statName]" size="4"></td>
+                <td>/ {{testHero.battleStatsMax[statName]}}</td>
+            </tr>
+        </table>
+
+        <div style="clear:both;height:20px;"></div>
+
+        <div style="float:left">
+            <select class="select_black_text" ng-model="testHero.testEffect" ng-options="o for o in statusEffects" ng-click="$event.stopPropagation()"></select>
+            <button class="button short" ng-click="addTestEffect(testHero)">Add Effect</button>
+
+            <div ng-repeat="effect in testHero.battleStatusEffects" ng-if="effect">
+                <button class="button short" ng-click="removeTestEffect(testHero, this.effect)">Remove</button> {{effect.name}} ({{effect.totalTurns}} / {{effect.turnsRemaining}})
+            </div>
+
+        </div>
+    </div>
+    
+    <div style="clear:both"></div>
+</div>

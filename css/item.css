@@ -1,0 +1,20 @@
+.item
+{
+    padding:2px;
+    padding-left:5px;
+    padding-right:5px;
+    border:1px solid #666;
+    margin-bottom:10px;
+    overflow: hidden;
+}
+
+.item *
+{
+    font-size:10px;
+}
+
+.rarity_1 { color:#FFFFFF!important; } /* White */
+.rarity_2 { color:#60E860!important; } /* Green */
+.rarity_3 { color:#3A8CCB!important; } /* Blue */
+.rarity_4 { color:#F9677E!important; } /* Red */
+.rarity_5 { color:#FFA53D!important; } /* Orange */

@@ -1,0 +1,66 @@
+#battle_log
+{
+    width:25%;
+    position:fixed;
+    top:0px;
+    bottom:0px;
+    overflow:visible;
+}
+
+#battle_log .title
+{
+    font-size:20px;
+    margin-bottom:5px;
+    padding-bottom:5px;
+    border-bottom:1px solid #666;
+}
+
+#battle_log_content
+{
+    overflow-y:scroll;
+    position:absolute;
+    top:40px;
+    bottom:0px;
+    width:100%;
+    padding-right:10px;
+}
+
+#battle_log_content *
+{
+    color:#CCC;
+    font-size:11px;
+}
+
+#battle_log_content b
+{
+    color:white;
+}
+
+#battle_log .emphasize
+{
+    padding:5px;
+    padding-left:10px;
+    padding-right:10px;
+    background:#444;
+    border-radius:100px;
+}
+
+#battle_log .emphasize:after
+{
+    float:right;
+    color:#FFFFFF;
+    margin-top:-4px;
+    margin-right:-5px;
+    font-family:FontAwesome;
+}
+
+#battle_log .i_ex.emphasize:after { font-size:20px; content:'\f06a'; }
+#battle_log .i_hero.emphasize:after { font-size:18px; content:'\f007'; }
+#battle_log .i_monster.emphasize:after { font-size:20px; content:'\f1b0'; }
+#battle_log .i_item.emphasize:after { font-size:20px; content:'\f06b'; }
+#battle_log .i_trophy.emphasize:after { font-size:20px; content:'\f091'; }
+#battle_log .i_times.emphasize:after { font-size:20px; content:'\f00d'; }
+
+#battle_log .green.emphasize:after { color:#60E860; }
+#battle_log .red.emphasize:after { color:#F9677E; }
+#battle_log .yellow.emphasize:after { color:#FFE534; }

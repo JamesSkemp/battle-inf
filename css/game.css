@@ -1,0 +1,271 @@
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    
+}
+
+* {
+    padding:0px;
+    margin:0px;
+    color:white;
+    font-family:Roboto;
+    font-size:12px;
+    
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+    
+    outline:0;
+}
+
+body {
+    background:#333;
+    overflow-y:scroll;
+}
+
+a {
+    text-decoration:none;
+    cursor:pointer;
+}
+
+a:hover {
+    text-decoration:underline;
+}
+
+input,textarea {
+    -moz-user-select: text;
+    -khtml-user-select: text;
+    -webkit-user-select: text;
+    user-select: text;
+}
+
+b {
+    font:inherit;
+    font-weight:bold;
+}
+
+#main_container
+{
+    transition: opacity 2s ease-in-out;
+    -moz-transition: opacity 2s ease-in-out;
+    -webkit-transition: opacity 2s ease-in-out;
+    opacity:1;
+}
+
+#main_container.ng-cloak
+{
+    display:block;
+    opacity:0;
+}
+
+#main_container
+{
+    margin:auto;
+    width:80%;
+    position:relative;
+}
+
+
+#loading_view
+{
+    transition: opacity 2s ease-in-out;
+    -moz-transition: opacity 2s ease-in-out;
+    -webkit-transition: opacity 2s ease-in-out;
+    opacity:0;
+}
+
+#loading_view.ng-cloak
+{
+    display:block;
+    opacity:1;
+}
+
+#intro_view
+{
+    transition: opacity 2s ease-in-out;
+    -moz-transition: opacity 2s ease-in-out;
+    -webkit-transition: opacity 2s ease-in-out;
+    opacity:1;
+}
+
+#intro_view.ng-cloak
+{
+    display:block;
+    opacity:0;
+}
+
+
+
+
+
+
+
+.button
+{
+    background-color:#F0F0F0;
+    border:0px;
+    border-bottom:2px solid #888;
+    border-top:2px solid #F0F0F0;
+    box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 2px 0px;
+    color: rgb(51, 51, 51);
+    cursor: pointer;
+    display: inline-block;
+    font-size: 1em;
+    line-height: 1.4em;
+    padding-top: 0.2em;
+    padding-bottom: 0.2em;
+    padding-left: 0.4em;
+    padding-right: 0.4em;
+    text-align: center;
+    text-shadow: #FFF 0px 1px 0px;
+    text-transform: none;
+    vertical-align: baseline;
+    white-space: nowrap;
+    text-decoration:none!important;
+    height:28px;
+}
+
+.button:active
+{
+    border-top-color:#CCC;
+    background:#CCC;
+}
+
+.button.short
+{
+    font-size:10px;
+    padding-top:0.1em;
+    padding-bottom:0.1em;
+    height:auto;
+}
+
+.button.tiny
+{
+    font-size:10px;
+    padding-top:0px;
+    padding-bottom:0px;
+    line-height: 1em;
+    height:auto;
+}
+
+.button.selected
+{
+    background:#888;
+    color:white;
+    text-shadow: #000 0px -1px 0px;
+    border-top:2px solid rgba(0,0,0,0);
+}
+
+.button.disabled
+{
+    color:#AAA!important;
+}
+
+.button.red
+{
+    color:white;
+    text-shadow: #000 0px 1px 0px;
+    border-top-color:#F9677E;
+    border-bottom-color:#BF394F;
+    background:#F9677E;
+}
+
+/*
+.button.bordered
+{
+    display:inline-block;
+    padding:5px;
+    border:1px solid white;
+    text-align:left;
+}
+*/
+
+.button:hover
+{
+    text-decoration:underline;
+}
+
+.no_underline
+{
+    text-decoration:none!important;
+}
+
+#tab_bar
+{
+    position:relative;
+    
+    padding-bottom:10px;
+    border-bottom:1px solid #666;
+}
+
+#tab_bar a
+{
+    width:100px;
+    height:28px;
+    float:left;
+}
+
+#tab_bar .multi_items
+{
+    transition: max-height 0.25s ease-in-out;
+    max-height:28px;
+    overflow:hidden;
+}
+
+#tab_bar .multi_items:hover
+{
+    max-height:84px;
+}
+
+#main_header
+{
+    background:#333;
+}
+
+#main_header.fixed
+{
+    position:fixed!important;
+    top:0px;
+    z-index:101;
+}
+
+.view_header
+{
+    text-align:right;
+    font-size:32px;
+}
+
+p.padding
+{
+    display:inline-block;
+    padding-left:20px;
+}
+
+.hero .start_name_edit
+{
+    display:none;
+}
+
+.hero:hover .start_name_edit
+{
+    display:inline
+}
+
+
+.gray_text { color:#BBB; }
+.darkgray_text { color:#666; }
+.bold_text { font-weight:bold }
+.green_text { color:#60E860!important }
+.blue_text { color:#3A8CCB!important }
+.red_text { color:#F9677E!important }
+.orange_text { color:#FFA53D!important }
+
+.yellow_text { color:#FFE534!important }
+
+
+
+
+.green_background { background:#60E860 };

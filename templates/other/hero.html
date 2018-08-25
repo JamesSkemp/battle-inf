@@ -1,0 +1,59 @@
+<div class="hero">
+    <div ng-show="!hero.editingName" style="float:left;">
+        <div style="display:inline-block;margin-right:20px;font-size:20px;">
+            {{hero.name}}
+            <span class="gray_text" style="font-size:20px;padding-left:10px;">Lv. {{hero.level}}</span>
+
+        </div>
+        <a ng-click="hero.editingName = true; $event.stopPropagation()" class="start_name_edit">
+            <i class="fa fa-pencil" style="color:inherit;font-size:20px;"></i>
+        </a>
+    </div>
+
+    <div ng-show="hero.editingName" style="float:left;">
+        <input type="text" ng-model="hero.name" style="color:black;border:1px solid #AAA;padding:3px;float:left">
+        <a ng-click="hero.editingName = false; $event.stopPropagation()" style="float:left;margin-left:10px;">
+            <i class="fa fa-check-square" style="color:inherit;font-size:25px;"></i>
+        </a>
+    </div>
+
+    <div ng-hide="noButtons" style="float:right;margin-top:10px;">
+        <a href="#equip/{{hero.index}}" class="button short"ng-class="{selected: location.path().indexOf('/equip') === 0}"
+           ng-show="player.unlock.equip" ng-click="$event.stopPropagation()">Equip</a>
+        <a href="#skills/{{hero.index}}" class="button short" ng-class="{selected: location.path().indexOf('/skills') === 0}"
+           ng-show="player.unlock.skills" ng-click="$event.stopPropagation()">Skills</a>
+        <a href="#actions/{{hero.index}}" class="button short" ng-class="{selected: location.path().indexOf('/actions') === 0}"
+           ng-show="player.unlock.actions" ng-click="$event.stopPropagation()">Actions</a>
+        <a href="#stats/{{hero.index}}" class="button short" ng-class="{selected: location.path().indexOf('/stats') === 0}"
+           ng-show="player.unlock.actions" ng-click="$event.stopPropagation()">Stats</a>
+    </div>
+
+
+    <div style="clear:both;"></div>
+
+
+    <div ng-repeat="statName in statOrder" style="float:left;margin-right:20px;">
+        <div class="gray_text">{{statName.toUpperCase()}}</div>
+        <b>{{hero.stats[statName].toFixed(0)}}</b>
+
+        <span ng-if="heroStatsChange">
+            <span ng-if="heroStatsChange[statName] < 0" class="red_text bold_text">
+                <i class="fa fa-arrow-down" style="color:inherit"></i>
+                {{Math.abs(heroStatsChange[statName].toFixed(0))}}
+            </span>
+            <span ng-if="heroStatsChange[statName] > 0" class="green_text bold_text">
+                <i class="fa fa-arrow-up" style="color:inherit"></i>
+                {{Math.abs(heroStatsChange[statName].toFixed(0))}}
+            </span>
+        </span>
+    </div>
+
+    <div style="float:left;margin-right:20px;">
+        <div class="gray_text">EXP</div>
+        <b>{{hero.exp}}</b>
+        <span class="darkgray_text">/ {{getExpRequiredForLevel(hero.level)}}</span>
+    </div>
+
+
+    <div style="clear:both;height:10px;"></div>
+</div>

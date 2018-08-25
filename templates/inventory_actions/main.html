@@ -1,0 +1,19 @@
+<div ng-repeat="statement in actionsContainer.actions" class="code_action_box" ng-class="{selected:statement.selected}">
+    <div style="float:right;margin-right:10px;">
+        <button class="button short" ng-if="statement.type === 'Condition'" ng-click="toggleSelection(statement, $event)" ng-class="{selected:statement.selected}">Edit</button>
+        
+        <button class="button short" ng-click="moveActionUp(actionsContainer, statement, $event)"><i class="fa fa-arrow-up" style="color:inherit"></i></button>
+        <button class="button short" ng-click="moveActionDown(actionsContainer, statement, $event)"><i class="fa fa-arrow-down" style="color:inherit"></i></button>
+        <button class="button short" ng-click="removeAction(actionsContainer, statement, $event)"><i class="fa fa-times" style="color:inherit"></i></button>
+    </div>
+    
+    <!-- CONDITIONAL -->
+    <div ng-if="statement.type === 'Condition'" class="code_editable">
+        <div ng-include="'templates/inventory_actions/condition.html'" ng-init="condition = statement;parentActionsContainer = actionsContainer;"></div>
+    </div>
+    
+    <!-- ACTION -->
+    <div ng-if="statement.type === 'Sell'" class="code_editable">
+        <span class="code_highlight code_function">Sell the item</span>
+    </div>
+</div>

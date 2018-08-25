@@ -1,0 +1,61 @@
+<style>
+    .training_options button
+    {
+        width:150px;
+        margin:2px;
+    }
+</style>
+
+<div ng-if="unassignedHeroes()" style="margin-bottom:10px;">
+    <div style="font-size:16px;margin-bottom:10px;">
+        Select a hero
+        <span class="gray_text" style="background:#444;border-radius:15px;display:inline-block;padding:5px;padding-left:20px;padding-right:20px;margin-left:20px;">
+            Training works off line.
+        </span>
+    </div>
+    <span ng-repeat="hero in heroes" ng-if="hero.trainingAreaIndex === -1">
+        <button class="button" ng-class="{selected:$index === selectionIndex.hero}" ng-click="selectionIndex.hero = $index">
+            {{hero.name}}
+        </button>
+    </span>
+</div>
+
+<div ng-repeat="trainingArea in trainingAreas" style="border:1px solid #666;padding:5px;float:left;margin-bottom:10px;width:100%;">
+    <div style="margin-bottom:10px;">
+        <b style="font-size:16px;">Lv. {{trainingArea.level}}</b>
+        <span class="gray_text" style="font-size:16px;">Training Area</span>
+        
+        <span ng-if="getHeroInTrainingArea($index)">
+            <button ng-click="unassignHero($index)" class="button" style="float:right">Unassign</button>
+        </span>
+        <span ng-if="!getHeroInTrainingArea($index)">
+            <button ng-click="assignHero($index)" class="button" style="float:right">Assign Selected</button>
+        </span>
+    </div>
+    
+    <div ng-if="getHeroInTrainingArea($index)">
+        <div ng-include="'templates/other/hero.html'" ng-init="hero = getHeroInTrainingArea($index);noButtons = true"></div>
+    </div>
+        
+    <div class="training_options" style="margin-bottom:10px;">
+        <button class="button" ng-repeat="(id, option) in trainingOptions" ng-if="trainingArea.level >= option.level"
+                ng-class="{selected:trainingArea.selectedId === id}" ng-click="trainingArea.selectedId = id">
+            {{option.name}}
+        </button>
+    </div>
+    
+    <div ng-repeat="(stat, value) in trainingOptions[trainingArea.selectedId].stats">
+        <div style="float:left;margin-right:10px;">
+            <span class="gray_text">
+                {{stat.toUpperCase()}}
+            </span>
+            <br>
+            <b class="green_text">
+                +{{value}}
+            </b>
+            <span style="font-size:10px">
+                / min
+            </span>
+        </div>
+    </div>
+</div>
