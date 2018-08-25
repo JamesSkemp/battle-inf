@@ -54,7 +54,7 @@ var basePlayer = function() {
     this.log('<span style="font-size:20px;">Welcome to <b style="font:inherit">Battle INF</b>.</span>');
     this.log('This is where you will see most game messages, but the more important ones will popup at the top of the window.');
     this.log('Your <b>goal</b> is to <b>complete challanges</b>, which are waves of enemies, <b>but there is a catch</b>.');
-    this.log('<b>Each enemy is designed with with its own logic, so it is your job to design your heroes with even better logic!</b>');
+    this.log('<b>Each enemy is designed with its own logic, so it is your job to design your heroes with even better logic!</b>');
     this.log('Your heroes will grow based on every little action.  Stat points and skills will all grow based on what a hero does and has done to them in battle.');
     this.log('<br>');
     this.log('Start off by clicking <b>"Start Battle"</b>');

@@ -15,7 +15,8 @@ If you have Node installed, I use http-server:
 2. Run `http-server`.
 
 ## What this project fixes
-- The Test functionality doesn't work on the Heroes Action page.
+- On the Heroes Action page, the Test functionality now works.
+- External resources now load over HTTPS.
 
 ## What this project adds
 > WIP
