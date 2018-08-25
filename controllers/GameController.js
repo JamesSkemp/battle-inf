@@ -221,14 +221,18 @@ app.controller('GameController', function($scope, $location, $interval, $http, $
      * TRAINING
      */
     var minuteTick = function() {
-        ga('send', {
-            // Required.
-            hitType: 'event'
-            // Required.
-            ,eventCategory: 'minute_tick'
-            // Required.
-            ,eventAction: 'tick'
-        });
+        try {
+            ga('send', {
+                // Required.
+                hitType: 'event'
+                // Required.
+                ,eventCategory: 'minute_tick'
+                // Required.
+                ,eventAction: 'tick'
+            });
+        } catch {
+            // Google Analytics was blocked if this fails, and that's okay.
+        }
         
         player.money += player.gpm;
         
