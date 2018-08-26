@@ -12,7 +12,7 @@
     "url": "https://github.com/JamesSkemp/battle-inf/issues"
   },
   "scripts": {
-    "start": "cp ./node_modules/react/umd/react.development.js ./dist/react.development.js && cp ./node_modules/react-dom/umd/react-dom.development.js ./dist/react-dom.development.js && webpack && http-server ./dist"
+    "build": "cp ./node_modules/react/umd/react.development.js ./dist/react.development.js && cp ./node_modules/react-dom/umd/react-dom.development.js ./dist/react-dom.development.js && webpack && http-server ./dist"
   },
   "homepage": "https://github.com/JamesSkemp/battle-inf#readme",
   "devDependencies": {
