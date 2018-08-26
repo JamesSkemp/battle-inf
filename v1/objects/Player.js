@@ -35,11 +35,11 @@ var basePlayer = function() {
     this.unlock = {};
     
     this.log = function(message) {
-        if (this.battleLog.length >= 50)
+        if (this.battleLog.length >= 500)
             this.battleLog.splice(0, 1);
         this.battleLog.push({m:message});
         
-        var scrollHeight = $('#battle_log')[0].scrollHeight + 1000;
+        var scrollHeight = $('#battle_log')[0].scrollHeight + 10000;
         
         // some jQuery to animate the log scroll
         if(!$('#battle_log_content').is(':animated'))
