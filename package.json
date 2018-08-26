@@ -1,0 +1,19 @@
+{
+  "name": "battle-inf",
+  "version": "1.0.0",
+  "description": "This project is a fork of [version 1 of Battle INF](https://github.com/zephren/battle-inf).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JamesSkemp/battle-inf.git"
+  },
+  "author": "James Skemp <strivinglife@gmail.com> (http://jamesrskemp.com)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JamesSkemp/battle-inf/issues"
+  },
+  "homepage": "https://github.com/JamesSkemp/battle-inf#readme"
+}
