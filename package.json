@@ -12,7 +12,9 @@
     "url": "https://github.com/JamesSkemp/battle-inf/issues"
   },
   "scripts": {
-    "build": "cp ./node_modules/react/umd/react.development.js ./dist/react.development.js && cp ./node_modules/react-dom/umd/react-dom.development.js ./dist/react-dom.development.js && webpack && http-server ./dist"
+    "start:dev": "webpack-dev-server",
+    "build": "webpack && http-server ./dist",
+    "copy-build": "cp ./node_modules/react/umd/react.development.js ./dist/react.development.js && cp ./node_modules/react-dom/umd/react-dom.development.js ./dist/react-dom.development.js && webpack && http-server ./dist"
   },
   "homepage": "https://github.com/JamesSkemp/battle-inf#readme",
   "devDependencies": {
@@ -21,7 +23,8 @@
     "source-map-loader": "^0.2.4",
     "typescript": "^3.0.1",
     "webpack": "^4.17.1",
-    "webpack-cli": "^3.1.0"
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.6"
   },
   "dependencies": {
     "@types/react": "^16.4.12",
