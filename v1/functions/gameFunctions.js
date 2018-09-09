@@ -1,14 +1,3 @@
-var createStats = function() {
-    return {
-        hp: 0
-        ,sp: 0
-        ,attack: 0
-        ,defense: 0
-        ,dexterity: 0
-        ,magic: 0
-    };
-};
-
 var getStatDifference = function(statsA, statsB) {
     var statsC = {};
     
@@ -16,17 +5,6 @@ var getStatDifference = function(statsA, statsB) {
         statsC[i] = statsA[i] - statsB[i];
     
     return statsC;
-};
-
-var statDisplayString = function(statName) {
-    switch (statName) {
-        case 'hp': return 'HP';
-        case 'sp': return 'SP';
-        case 'attack': return 'ATK';
-        case 'defense': return 'DEF';
-        case 'dexterity': return 'DEX';
-        case 'magic': return 'MAG';
-    }
 };
 
 var addNumberCommas = function(number) {

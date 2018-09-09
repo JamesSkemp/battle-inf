@@ -31,17 +31,6 @@ var BattleUnit = function() {
             this.baseStats[i] += statAmounts[i] * (battle.level / this.level);
     };
     
-    this.createStatDisplay = function(stat) {
-        var colorClass = '';
-        var ratio = this.battleStats[stat] / (this.battleStatsMax[stat] * 1.0);
-        
-        if (ratio > 0.66) colorClass = 'green_text';
-        else if (ratio > 0.33) colorClass = 'orange_text';
-        else colorClass = 'red_text';
-        
-        return '<b class="' + colorClass + '">[' + this.battleStats[stat] + ' / ' + this.battleStatsMax[stat] + ' ' + statDisplayString(stat) + ']</b>';
-    };
-    
     // Restore will not go above the max value
     // Return the actual amount restored
     this.restoreStat = function(stat, amount) {

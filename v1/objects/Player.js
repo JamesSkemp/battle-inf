@@ -1,23 +1,6 @@
 var basePlayer = function() {
-    this.createMonsterParty = function(max) {  
-        // +/- the max, for some variation, but to keep things even
-        var number = randomInt(max - 1, max + 1);
-        if (number < 1) number = 1; // Minimum of 1
-            
-        var monsters = [];
-        
-        for (var i = 0; i < number; i++)
-        {
-            var monster = new baseMonster();
-            //monster.name += ' (' + (i + 1) + ')';
-            monster.initForBattle();
-            this.log('<b>' + monster.name + '</b> appeared ' + monster.createStatDisplay('hp'));
-            monsters.push(monster);
-        }
-        
-        this.monsters = monsters;
-    };
-    
+    // REMOVED
+
     // Add an item to the inventory, or sell it
     this.addItem = function(item) {
         var result = 'keep';
@@ -262,22 +245,6 @@ var basePlayer = function() {
         }
         
         // NEED TO ADD GEM CODE
-    };
-    
-    this.addHeroToTraining = function(hero, buildingIndex) {
-        hero.trainingAreaIndex = buildingIndex;
-    };
-    
-    this.removeHeroInTraining = function(buildingIndex) {
-        for (var i in this.heroes)
-        {
-            var hero = this.heroes[i];
-            if (hero.trainingAreaIndex === buildingIndex)
-            {
-                hero.trainingAreaIndex = -1;
-                break;
-            }
-        }
     };
     
     this.getActiveHeroCount = function() {
