@@ -1,32 +1,4 @@
 var BattleUnit = function() {
-    this.initBattleUnit = function() {
-        this.initUnit();
-
-        this.battle = null;
-
-        this.baseStats = createStats();
-
-        this.battleStats = null;
-        this.battleStatsMax = null;
-        this.battleStatusEffects = {};
-        this.actScore = 0;
-        
-        this.actionCode = '';
-    };
-
-    this.initForBattle = function(battle) {
-        this.battle = battle;
-        this.battleStats = mergeObjects({}, this.stats);
-        
-        // Floor all stats
-        for (var i in this.battleStats)
-            this.battleStats[i] = Math.floor(this.battleStats[i]);
-        
-        // Copy battleStats
-        this.battleStatsMax = mergeObjects({}, this.battleStats);
-        this.battleStatusEffects = {};
-    };
-    
     this.updateAfterBattle = function() {
         // Check unit's level
         while (true)

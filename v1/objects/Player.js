@@ -1,70 +1,4 @@
 var basePlayer = function() {
-    this.money = 0;
-    this.inventory = [];
-    this.inventoryMax = 20;
-    this.inventoryActions = {"type": "root","actions": []};
-    this.inventoryActionCode = '';
-    //this.inventoryActionCode = "if (player.itemComp(item,'rarity','>=',5)) {if (player.itemComp(item,'level','<=',75)) {result='sell'; return;}}if (player.itemComp(item,'rarity','<=',3)) {}";
-    
-    this.shopItems = [];
-    
-    this.landUsed = 0;
-    this.landMax = 10;
-    this.landProgress = 0;
-    this.buildings = {};
-    this.gpm = 0;
-    this.battleLevel = 1;
-    
-    this.trainingSlots = [];
-    
-    this.heroMax = 8;
-    this.heroes = [];
-    this.monsters = [];
-    this.battleHeroes = [];
-    
-    // Special
-    this.timeMultiplier = 1;
-    this.battleLog = [];
-    this.autoSave = true;
-    this.endless = false;
-    this.paused = false;
-    this.inBattle = false;
-    this.lastShopRefreshTimestamp = 0;
-    this.lastTrainingCheckTimestamp = 0;
-    
-    this.unlock = {};
-    
-    this.log = function(message) {
-        if (this.battleLog.length >= 500)
-            this.battleLog.splice(0, 1);
-        this.battleLog.push({m:message});
-        
-        var scrollHeight = $('#battle_log')[0].scrollHeight + 10000;
-        
-        // some jQuery to animate the log scroll
-        if(!$('#battle_log_content').is(':animated'))
-            $('#battle_log_content').animate({scrollTop: scrollHeight}, 'slow');
-    };
-    
-    this.clearLog = function() {
-        player.battleLog = [];
-        player.log('Battle log cleared.');
-    };
-    
-    this.log('<span style="font-size:20px;">Welcome to <b style="font:inherit">Battle INF</b>.</span>');
-    this.log('This is where you will see most game messages, but the more important ones will popup at the top of the window.');
-    this.log('Your <b>goal</b> is to <b>complete challanges</b>, which are waves of enemies, <b>but there is a catch</b>.');
-    this.log('<b>Each enemy is designed with its own logic, so it is your job to design your heroes with even better logic!</b>');
-    this.log('Your heroes will grow based on every little action.  Stat points and skills will all grow based on what a hero does and has done to them in battle.');
-    this.log('<br>');
-    this.log('Start off by clicking <b>"Start Battle"</b>');
-   
-    this.createNewHero = function() {
-        var hero = new baseHero();
-        hero.setup(this.heroes.length);
-        this.heroes.push(mergeObjects({}, hero));
-    };
-    
     this.createMonsterParty = function(max) {  
         // +/- the max, for some variation, but to keep things even
         var number = randomInt(max - 1, max + 1);
@@ -143,7 +77,6 @@ var basePlayer = function() {
             if (!this.heroes[i].reserve)
             {
                 this.battleHeroes.push(this.heroes[i]);
-                
             }
         }
         
@@ -366,11 +299,6 @@ var basePlayer = function() {
         return 0;
     };
     
-    
-    
-    
-    
-    
     this.prepareForSave = function() {
         this.inBattle = false;
         this.battleHeroes = [];
@@ -392,8 +320,7 @@ var basePlayer = function() {
 };
 
 var initNewPlayer = function() {
-    player.createNewHero();
-    player.heroes[0].reserve = false;
+    // REMOVED
     
     player.buildBuilding(getBuildingByName('Townhall'));
     player.buildBuilding(getBuildingByName('Weapon Smith'));
@@ -406,8 +333,6 @@ var initNewPlayer = function() {
         player.addItem(new baseItem({
             level: 1
             ,rarity: 1
-            //,type: 'hand'
-            //,subType: 'SWORD'
         }));
     }
 };

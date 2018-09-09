@@ -1,24 +1,4 @@
 var BattleActions = function() {
-    this.currentPerformingParty = null;
-    this.currentPerformingUnit = null;
-    
-    this.selectedOpponent = null;
-    this.selectedAlly = null;
-    
-    this.getTargetFromSelector = function(targetSelector)
-    {
-        var target = null;
-
-        if (targetSelector === 'Self')
-            target = this.currentPerformingUnit;
-        if (targetSelector === 'Selected Opponent')
-            target = this.selectedOpponent;
-        if (targetSelector === 'Selected Ally')
-            target = this.selectedAlly;
-
-        return target;
-    };
-
     this.currentUnitPerformAction = function(action, targetSelector, extra1)
     {
         // Determine the target

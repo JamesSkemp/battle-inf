@@ -1,15 +1,5 @@
 var baseMonster = function(genProperties) {
-    this.initBattleUnit();
-    this.type = 'monster';
-    
-    if (!genProperties)
-        genProperties = {};
-    
-    // Set the level if not specified
-    if (!genProperties.level)
-    {
-        genProperties.level = player.battleLevel;
-    }
+    // REMOVED
     
     // Pick a random type
     if (!genProperties.type)
@@ -84,12 +74,6 @@ var baseMonster = function(genProperties) {
             };
         }
     }
-    
-    
-    
-    //this.stats.hp = this.stats.maxHp = 30;
-    //this.stats.attack = 15;
-    //this.stats.defense = 0;
     
     this.actionCode = compileActions(monsterBehavior.actions());
 };

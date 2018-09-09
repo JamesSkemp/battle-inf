@@ -1,27 +1,4 @@
 var Battle = function () {
-    this.__dontMerge = true; // Tells mergeObjects() to ignore the object
-    
-    this.parties = [];
-    this.allUnits = []; // For determining order
-    this.round = 0;
-    this.level = 0;
-    this.done = false;
-    this.winningIndex = 0;
-    
-    this.addParty = function(units) {
-        var unitList = [];
-        for (var i in units)
-        {
-            unitList.push(units[i]);
-            this.allUnits.push(units[i]);
-        }
-        
-        this.parties.push({
-            livingUnits: unitList
-            ,deadUnits: []
-        });
-    };
-    ;
     this.initBattle = function() {
         for (var i in this.parties)
             for (var j in this.parties[i].livingUnits)
@@ -92,26 +69,6 @@ var Battle = function () {
         if (this.done)
             return this.finalizeBattle();
     };
-    
-    // b - a to sort in a descending order
-    this.unitSorter = function(a, b) {
-        return b.actScore - a.actScore;
-    };
-    
-    this.getPartyOfUnit = function(unit) {
-        for (var i in this.parties)
-        {
-            var party = this.parties[i];
-            
-            for (var j in party.livingUnits)
-                if (party.livingUnits[j] === unit)
-                    return party;
-            
-            for (var j in party.deadUnits)
-                if (party.deadUnits[j] === unit)
-                    return party;
-        }
-    }
     
     // This allows for easy testing, we can set which unit should take a turn to act
     this.unitTakeTurn = function(unit, performingParty, opposingParty) {

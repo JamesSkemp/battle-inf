@@ -1,90 +1,7 @@
 var baseHero = function() {
-    this.initBattleUnit();
-    
-    this.type = 'hero';
-    
-    this.name = nameGenerator.randomName(2, 5) + ' ' + nameGenerator.randomName(2, 5);
-    this.stats = createStats();
-    this.totalExp = 0;
-    
-    this.baseStats.hp = 50;
-    this.baseStats.sp = 10;
-    this.baseStats.attack = 1;
-    this.baseStats.defense = 1;
-    
-    this.trainingAreaIndex = -1;
-    this.reserve = true;
-    
-    this.index = -1;
-    
-    
-    this.gameStats = {
-        physicalDamageDealt: 0
-        ,damageReceived: 0
-        ,totalExp: 0
-        ,totalTimesDefeated: 0
-        ,totalMinutesTraining: 0
-    };
-    
-    
-    this.equipment = {
-        head: null
-        ,body: null
-        ,hands: null
-        ,legs: null
-        ,feet: null
-        ,hand: [
-            null
-            ,null
-        ]
-    };
-    
-    this.actionsRoot = {"type":"root","actions":[{"type":"Select Target","targetType":"Opponent","select":"With Least","stat":"hp"},{"type":"Action","code":"Attack","target":"Selected Opponent"}]};
-    this.actionCode = "battle.selectTarget('Opponent', 'With Least', 'hp');if (battle.currentUnitPerformAction('Attack','Selected Opponent')) return;";
-    
-    this.setup = function(index) {
-        this.index = index;
-        
-        this.equip(new baseItem({
-            level: 1
-            ,rarity: 1
-            ,type: 'hand'
-            ,subType: 'SWORD'
-        }), true);
-        
-        this.equip(new baseItem({
-            level: 1
-            ,rarity: 1
-            ,type: 'body'
-            ,subType: 'CHAIN'
-        }), true);
-        
-        this.equip(new baseItem({
-            level: 1
-            ,rarity: 1
-            ,type: 'legs'
-            ,subType: 'CHAIN'
-        }), true);
-        
-        /*
-        this.equip(new baseItem({
-            level: 1
-            ,rarity: 4
-            ,type: 'hands'
-            ,subType: 'CHAIN'
-        }));
-        
-        this.equip(new baseItem({
-            level: 1
-            ,rarity: 5
-            ,type: 'feet'
-            ,subType: 'CHAIN'
-        }));
-        */
-    };
-    
+    // REMOVED
+
     this.calculateStats = function() {
-        
         for (var i in this.baseStats)
             this.stats[i] = this.baseStats[i];
         
@@ -236,12 +153,6 @@ var baseHero = function() {
                 ,item: this.equipment.feet
             }
         ];
-    };
-    
-    this.addExp = function(amount) {
-        this.exp += amount;
-        this.totalExp += amount;
-        this.gameStats.totalExp += amount;
     };
     
     this.buildEquipmentList();

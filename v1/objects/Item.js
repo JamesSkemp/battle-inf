@@ -1,28 +1,6 @@
 var baseItem = function(genProperties) {
-    this.stats = createStats();
-    
-    if (!genProperties)
-        genProperties = {};
-    
-    if (!genProperties.rarity)
-    {
-        var total = 5;
-        var mod = 1.7;
-        var max = Math.ceil(Math.pow(2, total * mod));
-        var r = randomInt(0, max);
-        
-        for (var i = 1; i <= total; i++)
-        {
-            if (r <= Math.pow(2, i * mod))
-            {
-                rarity = total - (i - 1);
-                break;
-            }
-        }
-        
-        genProperties.rarity = rarity;
-    }
-    
+    // REMOVED
+
     if (!genProperties.type)
     {
         var itemType = randomInt(0, itemTypesList.length - 1);
@@ -31,15 +9,11 @@ var baseItem = function(genProperties) {
     
     if (!genProperties.subType)
     {
-        var itemType = genProperties.type;
-        var itemSubType = randomInt(0, itemSubTypesList[itemType].length - 1);
-        genProperties.subType = itemSubTypesList[itemType][itemSubType];
+        var itemSubType = randomInt(0, itemSubTypesList[genProperties.type].length - 1);
+        genProperties.subType = itemSubTypesList[genProperties.type][itemSubType];
     }
     
-    this.level = genProperties.level;
-    this.rarity = genProperties.rarity;
-    this.type = genProperties.type;
-    this.subType = genProperties.subType;
+    // REMOVED
     
     var statBase = this.level * 10;
     
@@ -70,12 +44,4 @@ var baseItem = function(genProperties) {
         this.moneyValue = Math.round(this.moneyValue * (1 - player.getShopPercentOff('Gemcutter') / 100));
     else // Armor
         this.moneyValue = Math.round(this.moneyValue * (1 - player.getShopPercentOff('Armor Smith') / 100));
-        
-    
-    
-    
-    
-    
-    
 };
-
