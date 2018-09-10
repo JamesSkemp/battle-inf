@@ -147,54 +147,6 @@ var basePlayer = function() {
         }
     };
     
-    this.buildBuilding = function(building) {
-        var name = building.name;
-        
-        if (!this.buildings[name])
-            this.buildings[name] = [];
-        
-        this.buildings[name].push({
-            name: name
-            ,level: 1
-        });
-        
-        if (building.onBuild)
-            building.onBuild(this.buildings[name].length);
-        
-        this.calculateLand();
-        this.calculateGPM();
-        
-        if (name === 'Weapon Smith' || name === 'Armor Smith')
-            this.restockShopItems();
-    };
-    
-    this.calculateLand = function() {
-        var landUsed = 0;
-        
-        for (var i in Buildings)
-        {
-            var building = Buildings[i];
-            if (this.buildings[building.name])
-                landUsed += building.space * this.buildings[building.name].length;
-        }
-        
-        this.landUsed = landUsed;
-    };
-    
-    this.calculateGPM = function() {
-        var gpm = 0;
-        
-        for (var i in Buildings)
-        {
-            var building = Buildings[i];
-            if (this.buildings[building.name])
-                for (var j in this.buildings[building.name])
-                    gpm += building.gpm * this.buildings[building.name][j].level;
-        }
-        
-        this.gpm = gpm;
-    };
-    
     this.getMaxHeroLevel = function() {
         var level = 0;
         for (var i in this.heroes)
@@ -288,13 +240,7 @@ var basePlayer = function() {
 
 var initNewPlayer = function() {
     // REMOVED
-    
-    player.buildBuilding(getBuildingByName('Townhall'));
-    player.buildBuilding(getBuildingByName('Weapon Smith'));
-    player.buildBuilding(getBuildingByName('Armor Smith'));
-    player.buildBuilding(getBuildingByName('Housing'));
-    player.buildBuilding(getBuildingByName('Housing'));
-    
+
     for (var i = 0; i < 10; i++)
     {
         player.addItem(new baseItem({
