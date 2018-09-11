@@ -1,20 +1,6 @@
 var BattleUnit = function() {
     this.updateAfterBattle = function() {
-        // Check unit's level
-        while (true)
-        {
-            var reqExp = getExpRequiredForLevel(this.level);
-            
-            if (this.exp >= reqExp)
-            {
-                this.level++;
-                this.exp = 0;
-            }
-            else
-            {
-                break;
-            }
-        }
+        // REMOVED
         
         // Check each of unit's skill's level
         for (var skillName in this.skills)
@@ -80,77 +66,6 @@ var BattleUnit = function() {
             this.gameStats.damageReceived += args.damage;
         
         return args.damage;
-    };
-    
-    this.calculateBaseAttackDamageFor = function(unit) {
-        var damage = this.battleStats.attack - (unit.battleStats.defense / 2);
-        
-        // Dexterity modifies damage
-        damage *= (1 + (this.battleStats.dexterity * 0.005));
-        damage *= randomFloat(0.8, 1.2);
-        
-        return damage;
-    };
-    
-    this.willCriticalHit = function() {
-        var skill = this.skills['Critical Strike'];
-        if (skill)
-        {
-            skill.uses++;
-            if (randomInt(0, 100) < skill.level)
-                return true;
-        }
-        
-        return false;
-    };
-    
-    this.willDodge = function() {
-        var skill = this.skills['Dodge'];
-        
-        if (skill)
-        {
-            skill.uses++;
-            var r = randomInt(0, 100);
-            if (r < skill.level)
-                return true;
-        }
-        
-        return false;
-    };
-    
-    this.attack = function(unit, power, supressAttackMessage) {
-        var dodged = unit.willDodge();
-        
-        if (!supressAttackMessage)
-            player.log('<b>' + this.name + '</b> attacks <b>' + unit.name + '</b>');
-        
-        if (!dodged)
-        {
-            var damage = this.calculateBaseAttackDamageFor(unit) * power;
-            var critical = this.willCriticalHit();
-            
-            this.incrementStats(StatGrowth.didAttack);
-            unit.incrementStats(StatGrowth.wasAttacked);
-
-            if (critical) player.log('<p class="padding">It\'s critical!</p>');
-
-            var actualDamage = unit.receiveDamage({damage:damage, mult:critical ? 2 : 1});
-            
-            if (this.gameStats)
-                this.gameStats.physicalDamageDealt += actualDamage;
-            
-            return true;
-        }
-        else
-        {
-            player.log('<b>' + unit.name + '</b> dodges the attack');
-            
-            return false;
-        }
-    };
-    
-    this.defend = function() {
-        player.log(this.name + ' is defending');
     };
     
     this.useSkillOn = function(skillName, unit) {
