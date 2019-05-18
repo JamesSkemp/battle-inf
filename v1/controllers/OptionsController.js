@@ -15,7 +15,7 @@ app.controller('OptionsController', function($scope, messageService) {
 		console.log($scope.importSaveData.length);
 		console.log($scope.importSaveData);
 		if ($scope.importSaveData.length > 0) {
-			var data = LZString.compress(angular.toJson($scope.importSaveData.replace("\"", "\\\"")));
+			var data = LZString.compress(angular.toJson($scope.importSaveData));
 			console.log(angular.toJson($scope.importSaveData));
 			console.log(data);
 			localStorage.setItem('save_player', data);

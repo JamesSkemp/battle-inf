@@ -74,8 +74,12 @@ app.controller('GameController', function($scope, $location, $interval, $http, $
         if (saveDataString !== null)
         {
             var playerData = angular.fromJson(LZString.decompress(saveDataString));
-            
-            player = mergeObjects(player, playerData);
+			
+			console.log(playerData);
+
+			player = mergeObjects(player, playerData);
+			
+			console.log(player);
             
             $scope.player = player;
 
