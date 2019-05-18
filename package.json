@@ -1,0 +1,35 @@
+{
+  "name": "battle-inf",
+  "version": "1.0.0",
+  "description": "This project is a fork of [version 1 of Battle INF](https://github.com/zephren/battle-inf).",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JamesSkemp/battle-inf.git"
+  },
+  "private": true,
+  "author": "James Skemp <strivinglife@gmail.com> (http://jamesrskemp.com)",
+  "bugs": {
+    "url": "https://github.com/JamesSkemp/battle-inf/issues"
+  },
+  "scripts": {
+    "start:dev": "webpack-dev-server",
+    "build": "webpack && http-server ./dist",
+    "copy-build": "cp ./node_modules/react/umd/react.development.js ./dist/react.development.js && cp ./node_modules/react-dom/umd/react-dom.development.js ./dist/react-dom.development.js && webpack && http-server ./dist"
+  },
+  "homepage": "https://github.com/JamesSkemp/battle-inf#readme",
+  "devDependencies": {
+    "awesome-typescript-loader": "^5.2.0",
+    "html-webpack-plugin": "^3.2.0",
+    "source-map-loader": "^0.2.4",
+    "typescript": "^3.0.1",
+    "webpack": "^4.17.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.6"
+  },
+  "dependencies": {
+    "@types/react": "^16.4.12",
+    "@types/react-dom": "^16.0.7",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  }
+}
