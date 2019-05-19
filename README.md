@@ -20,6 +20,9 @@ If you have Node installed, I use http-server:
 
 ## What this project adds
 > WIP
+- Node support. Run `npm install` when first pulling down the project.
+- eslint
+	- Run `npm run lint` to list issues.
 
 ## What this project changes
 > WIP
