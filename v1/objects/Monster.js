@@ -1,16 +1,16 @@
 var baseMonster = function(genProperties) {
     this.initBattleUnit();
     this.type = 'monster';
-    
+
     if (!genProperties)
         genProperties = {};
-    
+
     // Set the level if not specified
     if (!genProperties.level)
     {
         genProperties.level = player.battleLevel;
     }
-    
+
     // Pick a random type
     if (!genProperties.type)
     {
@@ -25,7 +25,7 @@ var baseMonster = function(genProperties) {
             }
         }
     }
-    
+
     // Pick a monster name
     if (!genProperties.name)
     {
@@ -48,7 +48,7 @@ var baseMonster = function(genProperties) {
             genProperties.name = levelNames.names[r];
         }
     }
-    
+
     var monsterBehavior = mBehaviors[genProperties.type];
     var monsterName = mNames[genProperties.name];
     
@@ -58,9 +58,9 @@ var baseMonster = function(genProperties) {
         this.name = genProperties.customName;
     else
         this.name = genProperties.name.replace('_', ' ') + ' ' + monsterBehavior.name(this.level);
-    
+
     var baseStat = 10 * this.level;
-    
+
     // Set stats
     for (var i in createStats())
     {
@@ -70,7 +70,7 @@ var baseMonster = function(genProperties) {
         if (monsterBehavior.statMods[i])
             this.stats[i] *= monsterBehavior.statMods[i];
     }
-    
+
     // Give the monster all skills, but only one will be called from the actions
     if (monsterBehavior.skills)
     {
@@ -84,13 +84,11 @@ var baseMonster = function(genProperties) {
             };
         }
     }
-    
-    
-    
+
     //this.stats.hp = this.stats.maxHp = 30;
     //this.stats.attack = 15;
     //this.stats.defense = 0;
-    
+
     this.actionCode = compileActions(monsterBehavior.actions());
 };
 baseMonster.prototype = new BattleUnit();

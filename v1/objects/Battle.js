@@ -1,13 +1,13 @@
 var Battle = function () {
     this.__dontMerge = true; // Tells mergeObjects() to ignore the object
-    
+
     this.parties = [];
     this.allUnits = []; // For determining order
     this.round = 0;
     this.level = 0;
     this.done = false;
     this.winningIndex = 0;
-    
+
     this.addParty = function(units) {
         var unitList = [];
         for (var i in units)
@@ -21,7 +21,7 @@ var Battle = function () {
             ,deadUnits: []
         });
     };
-    ;
+
     this.initBattle = function() {
         for (var i in this.parties)
             for (var j in this.parties[i].livingUnits)
@@ -33,7 +33,7 @@ var Battle = function () {
         
         player.log('<center style="margin:20px;"><b style="font-size:16px">&mdash; Battle Started &mdash;</b></center>');
     };
-    
+
     this.finalizeBattle = function() {
         player.log('<center style="margin:20px;"><b style="font-size:16px">&mdash; Battle Over &mdash;</b></center>');
         
@@ -47,7 +47,7 @@ var Battle = function () {
                 this.parties[i].deadUnits[j].updateAfterBattle();
         }
     };
-    
+
     this.nextTurn = function() {
         /*
         if (this.currentPartyIndex === 0 && this.currentUnitIndex === 0)
@@ -56,13 +56,13 @@ var Battle = function () {
             player.log('<center style="margin:20px;"><b style="font-size:16px">&mdash; ROUND ' + this.round + ' &mdash;</b></center>');
         }
         */
-        
+
         this.allUnits.sort(this.unitSorter);
         var performingUnit = this.allUnits[0];
-        
+
 //        for (var i in this.allUnits)
 //            player.log(this.allUnits[i].name + ': ' + this.allUnits[i].actScore);
-        
+
         var performingParty = this.getPartyOfUnit(performingUnit);
         var opposingParty = null;
 
@@ -71,13 +71,13 @@ var Battle = function () {
             opposingParty = this.parties[1];
         else
             opposingParty = this.parties[0];
-        
+
         this.unitTakeTurn(
             performingUnit
             ,performingParty
             ,opposingParty  
         );
-        
+
         // Adjust act scores
         for (var i in this.allUnits)
         {
@@ -87,17 +87,17 @@ var Battle = function () {
             else
                 unit.actScore += unit.battleStats.dexterity;
         }
-        
+
         // The battle is over
         if (this.done)
             return this.finalizeBattle();
     };
-    
+
     // b - a to sort in a descending order
     this.unitSorter = function(a, b) {
         return b.actScore - a.actScore;
     };
-    
+
     this.getPartyOfUnit = function(unit) {
         for (var i in this.parties)
         {
@@ -112,31 +112,31 @@ var Battle = function () {
                     return party;
         }
     }
-    
+
     // This allows for easy testing, we can set which unit should take a turn to act
     this.unitTakeTurn = function(unit, performingParty, opposingParty) {
         this.currentPerformingUnit = unit;
         this.currentPerformingParty = performingParty;
         this.currentOpposingParty = opposingParty;
-        
+
         this.checkStatusEffects(unit);
-        
+
         if (unit.skipNextTurn)
         {
             unit.skipNextTurn = false;
             return;
         }
-        
+
         // Create a function to execute
         // TODO: maybe this could be done else where and cached?
         eval('battleFn = function(battle) {' + unit.actionCode + '}');
         battleFn(this);
     };
-    
+
     this.checkStatusEffects = function(unit)
     {
         var effectsToRemove = [];
-        
+
         // Check status effecs and reduce all by 1, remove those at 0
         for (var i in unit.battleStatusEffects)
         {
@@ -155,12 +155,12 @@ var Battle = function () {
                 effect.turnsRemaining--;
             }
         }
-        
+
         // Remove effects
         for (var i in effectsToRemove)
             unit.removeStatusEffect(effectsToRemove[i]);
     };
-    
+
     this.unitDead = function(unit) {
         for (var i in this.parties)
         {
@@ -177,20 +177,20 @@ var Battle = function () {
                     break;
                 }
             }
-            
+
             if (foundUnit)
             {
                 // Check if there are any more living units
                 if (party.livingUnits.length === 0)
                     this.done = true;
             }
-            
+
             if (party.livingUnits.length > 0)
             {
                 this.winningIndex = parseInt(i); // If the battle is done, this will be set to the winning party
             }
         }
-        
+
         if (unit.gameStats)
             unit.gameStats.totalTimesDefeated++;
     };
