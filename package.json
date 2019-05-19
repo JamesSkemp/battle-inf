@@ -1,0 +1,21 @@
+{
+  "name": "battle-inf",
+  "version": "1.2.0",
+  "description": "This project is a fork of [version 1 of Battle INF](https://github.com/zephren/battle-inf).",
+  "main": "index.js",
+  "scripts": {
+	"lint": "eslint --fix-dry-run v1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JamesSkemp/battle-inf.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JamesSkemp/battle-inf/issues"
+  },
+  "homepage": "https://github.com/JamesSkemp/battle-inf#readme",
+  "devDependencies": {
+    "eslint": "^5.16.0"
+  }
+}
