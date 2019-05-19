@@ -19,7 +19,7 @@ var baseItem = function(genProperties) {
 				break;
 			}
 		}
-		
+
 		genProperties.rarity = rarity;
 	}
 
@@ -40,11 +40,11 @@ var baseItem = function(genProperties) {
 	this.rarity = genProperties.rarity;
 	this.type = genProperties.type;
 	this.subType = genProperties.subType;
-	
+
 	var statBase = this.level * 10;
-	
+
 	var itemProperties = itemTypes[this.type][this.subType];
-	
+
 	if (itemProperties.slots)
 		statBase *= itemProperties.slots;
 
@@ -58,11 +58,11 @@ var baseItem = function(genProperties) {
 	}
 
 	this.name = itemProperties.name;
-		
+
 	this.moneyValue = totalStats * this.level * this.rarity;
-	
+
 	console.log(player.getShopPercentOff('Armor Smith'));
-	
+
 	// Make modifications to the value
 	if (this.type === 'hand')
 		this.moneyValue = Math.round(this.moneyValue * (1 - player.getShopPercentOff('Weapon Smith') / 100));

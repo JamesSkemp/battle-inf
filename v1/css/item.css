@@ -1,16 +1,13 @@
-.item
-{
-    padding:2px;
-    padding-left:5px;
-    padding-right:5px;
-    border:1px solid #666;
-    margin-bottom:10px;
-    overflow: hidden;
+.item {
+	padding:2px;
+	padding-left:5px;
+	padding-right:5px;
+	border:1px solid #666;
+	margin-bottom:10px;
+	overflow: hidden;
 }
-
-.item *
-{
-    font-size:10px;
+.item * {
+	font-size:10px;
 }
 
 .rarity_1 { color:#FFFFFF!important; } /* White */

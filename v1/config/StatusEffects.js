@@ -12,7 +12,7 @@ var StatusEffects = {
             player.log('<b>' + unit.name + '</b> is no longer <b class="blue_text">paralyzed</b>');
         }
     }
-    
+
     ,On_Fire: {
         name: 'On Fire'
         ,added: function(unit) {
@@ -26,7 +26,7 @@ var StatusEffects = {
             player.log('<b>' + unit.name + '</b> is no longer <b class="blue_text">on fire</b>');
         }
     }
-    
+
     ,Poisoned: {
         name: 'Poisoned'
         ,added: function(unit) {
@@ -40,7 +40,7 @@ var StatusEffects = {
             player.log('<b>' + unit.name + '</b> is no longer <b class="blue_text">poisoned</b>');
         }
     }
-    
+
     ,Attack_Down: {
         name: 'Attack Down'
         ,added: function(unit) {
@@ -49,14 +49,14 @@ var StatusEffects = {
             unit.battleStats.attack -= this.effectAmount;
         }
         ,update: function(unit) {
-            
+
         }
         ,removed: function(unit) {
             player.log('<b>' + unit.name + '</b>\'s attack is no longer weakened');
             unit.battleStats.attack += this.effectAmount;
         }
     }
-    
+
     ,Defense_Down: {
         name: 'Defense Down'
         ,added: function(unit) {
@@ -65,7 +65,7 @@ var StatusEffects = {
             unit.battleStats.defense -= this.effectAmount;
         }
         ,update: function(unit) {
-            
+
         }
         ,removed: function(unit) {
             player.log('<b>' + unit.name + '</b>\'s defense is no longer weakened');

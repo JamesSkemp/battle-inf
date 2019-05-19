@@ -12,14 +12,14 @@ var mBehaviors = {
         ,statMods: {
         }
     }
-    
+
     ,basic_soldier: {
         name: function(level) {
             return 'Soldier';
         }
         ,actions: function () {
             var skillName = selectRandom(this.skills);
-            
+
             return [
                 mAct.target_opponent_with_least('hp')
                 ,mAct.skill_on_opponent(skillName)
@@ -34,7 +34,7 @@ var mBehaviors = {
         ,skills: ['Slash','Bash']
         ,skillLevel: 1
     }
-    
+
     ,basic_healer: {
         name: function(level) {
             return 'Healer';

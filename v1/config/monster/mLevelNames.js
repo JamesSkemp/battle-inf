@@ -1,5 +1,4 @@
 var mNames = {
-
 };
 
 var mLevelNames = [
@@ -32,9 +31,7 @@ var mLevelNames = [
             ,'Giant_Scorpion'
         ]
     }
-    
-    
-    
+
     // Dont need to define a max/end level, a random group and a random monster will be chosen
 ];
 
@@ -44,8 +41,6 @@ bat
 gnoll
 snake
 goblin
-
-
 
 
 skeleton

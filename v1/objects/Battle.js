@@ -15,7 +15,7 @@ var Battle = function () {
             unitList.push(units[i]);
             this.allUnits.push(units[i]);
         }
-        
+
         this.parties.push({
             livingUnits: unitList
             ,deadUnits: []
@@ -26,17 +26,17 @@ var Battle = function () {
         for (var i in this.parties)
             for (var j in this.parties[i].livingUnits)
                 this.parties[i].livingUnits[j].initForBattle(this);
-        
+
         // Initialize the act score
         for (var i in this.allUnits)
             this.allUnits[i].actScore = this.allUnits[i].battleStats.dexterity;
-        
+
         player.log('<center style="margin:20px;"><b style="font-size:16px">&mdash; Battle Started &mdash;</b></center>');
     };
 
     this.finalizeBattle = function() {
         player.log('<center style="margin:20px;"><b style="font-size:16px">&mdash; Battle Over &mdash;</b></center>');
-        
+
         // Go through each party and make updates to all units
         for (var i in this.parties)
         {
@@ -75,7 +75,7 @@ var Battle = function () {
         this.unitTakeTurn(
             performingUnit
             ,performingParty
-            ,opposingParty  
+            ,opposingParty
         );
 
         // Adjust act scores
@@ -102,11 +102,11 @@ var Battle = function () {
         for (var i in this.parties)
         {
             var party = this.parties[i];
-            
+
             for (var j in party.livingUnits)
                 if (party.livingUnits[j] === unit)
                     return party;
-            
+
             for (var j in party.deadUnits)
                 if (party.deadUnits[j] === unit)
                     return party;
@@ -141,7 +141,7 @@ var Battle = function () {
         for (var i in unit.battleStatusEffects)
         {
             var effect = unit.battleStatusEffects[i];
-            
+
             if (effect)
             {
                 if (effect.turnsRemaining <= 0)
@@ -166,7 +166,7 @@ var Battle = function () {
         {
             var party = this.parties[i];
             var foundUnit = false;
-            
+
             for (var j in party.livingUnits)
             {
                 if (party.livingUnits[j] === unit)

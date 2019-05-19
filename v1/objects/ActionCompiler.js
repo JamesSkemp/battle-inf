@@ -2,11 +2,11 @@
 
 function compileActions(actions) {
     var code = '';
-    
+
     for (var i in actions)
     {
         var action = actions[i];
-        
+
         switch (action.type)
         {
             case 'Condition':
@@ -20,22 +20,21 @@ function compileActions(actions) {
                 break;
         }
     }
-    
     return code;
 }
 
 function compileCondition(condition)
 {
     var conditionCode = '';
-    
+
     conditionCode += 'if ';
-    
+
     var functionCode = compileFunction(condition);
 
     conditionCode += '(' + functionCode + ') {';
     conditionCode += compileActions(condition.actions);
     conditionCode += '}';
-    
+
     return conditionCode;
 }
 
@@ -43,7 +42,7 @@ function compileFunction(condition)
 {
     var args = [];
     var functionName = null;
-    
+
     switch (condition.functionName)
     {
         case 'Stat':
@@ -70,7 +69,7 @@ function compileFunction(condition)
             ];
             break;
     }
-    
+
     if (functionName !== null)
     {
         return functionName + '(' + args.join(',') + ')';

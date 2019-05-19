@@ -11,10 +11,10 @@ var createStats = function() {
 
 var getStatDifference = function(statsA, statsB) {
     var statsC = {};
-    
+
     for (var i in statsA)
         statsC[i] = statsA[i] - statsB[i];
-    
+
     return statsC;
 };
 

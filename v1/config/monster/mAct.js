@@ -7,7 +7,7 @@ var mAct = {
             "stat": stat
         };
     }
-    
+
     ,target_ally_with_least: function(stat) {
         return {
             "type": "Select Target",
@@ -33,7 +33,7 @@ var mAct = {
             "skillName": skillName
         };
     }
-    
+
     ,skill_on_opponent: function(skillName) {
         return {
             "type": "Action",

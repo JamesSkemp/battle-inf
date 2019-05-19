@@ -27,8 +27,8 @@ var usableSkillTree = {
                 args.target.addStatusEffect(StatusEffects.Paralyzed, 2, 1);
         }
     }
-    
-    
+
+
     ,'Ignite': {
         req:[]
         ,reqLevel:[]
@@ -42,7 +42,7 @@ var usableSkillTree = {
             var power = 1 + this.level * 0.2 + args.user.battleStats.magic * 0.01;
             if (randomInt(0, 100) < 50)
                 args.target.addStatusEffect(StatusEffects.On_Fire, 3, power);
-            
+
             args.target.receiveDamage({damage:5, mult: power});
         }
     }
@@ -59,7 +59,7 @@ var usableSkillTree = {
             var power = 1 + this.level * 0.5 + args.user.battleStats.magic * 0.03;
             if (randomInt(0, 100) < 25)
                 args.target.addStatusEffect(StatusEffects.On_Fire, 2, power);
-            
+
             args.target.receiveDamage({damage:5, mult: power});
         }
     }
@@ -74,9 +74,9 @@ var usableSkillTree = {
         ,cost: 1000
         ,fn: function(args) {
             var successful = args.user.attack(args.target, (2 + args.skill.level * 0.2), true);
-            
+
             var power = 1 + this.level * 0.2 + args.user.battleStats.magic * 0.01;
-            
+
             if (successful)
             {
                 if (randomInt(0, 100) < 50)
@@ -85,7 +85,7 @@ var usableSkillTree = {
             }
         }
     }
-    
+
     ,'Attack Down': {
         req:[]
         ,reqLevel:[]
@@ -100,7 +100,7 @@ var usableSkillTree = {
             args.target.addStatusEffect(StatusEffects.Attack_Down, 3, power);
         }
     }
-    
+
     ,'Defense Down': {
         req:[]
         ,reqLevel:[]
@@ -115,7 +115,7 @@ var usableSkillTree = {
             args.target.addStatusEffect(StatusEffects.Defense_Down, 3, power);
         }
     }
-    
+
     ,'Heal': {
         req:[]
         ,reqLevel:[]
@@ -128,7 +128,7 @@ var usableSkillTree = {
         ,fn: function(args) {
             var power = 1 + this.level * 0.2 + args.user.battleStats.magic * 0.01;
             var amountRestored = args.target.restoreStat('hp', Math.round(power * 10));
-            
+
         }
     }
 };

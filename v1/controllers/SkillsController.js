@@ -1,6 +1,6 @@
 app.controller('SkillsController', function($scope, $routeParams, messageService) {
     $scope.$parent.header = 'SKILLS';
-    
+
     if (!player.unlock.actions)
     {
         player.unlock.actions = true;
@@ -8,16 +8,16 @@ app.controller('SkillsController', function($scope, $routeParams, messageService
         player.log('This is where you can select new skills for your heroes and check on each skill\'s level progress');
         player.log('Finally, you have access to your hero\'s <b>actions</b>.  This is where things get interesting.');
     }
-    
+
     $scope.hero = player.heroes[$routeParams.index];
     $scope.skillTree = SkillTree;
-    
+
     $scope.heroUsableSkills = {};
     $scope.heroPassiveSkills = {};
-    
+
     $scope.usableSkills = {};
     $scope.passiveSkills = {};
-    
+
     function refreshLearnableSkills() {
         for (var skillName in SkillTree)
         {
@@ -60,14 +60,14 @@ app.controller('SkillsController', function($scope, $routeParams, messageService
             }
         }
     }
-    
+
     refreshLearnableSkills();
-    
+
     $scope.learnSkill = function(skill) {
         if (player.money >= skill.cost)
         {
             player.money -= skill.cost;
-            
+
             $scope.hero.learnSkill(skill.name);
 
             if (skill.type === 'usable')
@@ -80,13 +80,13 @@ app.controller('SkillsController', function($scope, $routeParams, messageService
                 $scope.passiveSkills[skill.name] = null;
                 $scope.heroPassiveSkills[skill.name] = $scope.hero.skills[skill.name];
             }
-            
+
             refreshLearnableSkills();
         }
     };
-    
-    
-    
+
+
+
     $scope.skillReqExp = function(skillName, level) {
         var skill = SkillTree[skillName];
         return getExpRequiredForSkillLevel(skill.baseExp, skill.growthRate, level);

@@ -24,7 +24,7 @@ var baseMonster = function(genProperties) {
                 break;
             }
         }
-    }
+	}
 
     // Pick a monster name
     if (!genProperties.name)
@@ -39,7 +39,7 @@ var baseMonster = function(genProperties) {
                 break;
             }
         }
-        
+
         // Pick a random name if needed
         if (!genProperties.name)
         {
@@ -51,7 +51,7 @@ var baseMonster = function(genProperties) {
 
     var monsterBehavior = mBehaviors[genProperties.type];
     var monsterName = mNames[genProperties.name];
-    
+
     // Set the name and level
     this.level = genProperties.level;
     if (genProperties.customName)

@@ -4,7 +4,7 @@ var itemSubTypesList = {};
 for (var i in itemTypes)
 {
     itemTypesList.push(i);
-    
+
     for (var j in itemTypes[i])
     {
         if (!itemSubTypesList[i])

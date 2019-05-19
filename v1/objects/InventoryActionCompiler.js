@@ -1,7 +1,7 @@
 var InventoryActionsompiler = new function() {
     this.compileActions = function(actions) {
         var code = '';
-        
+
         for (var i in actions)
         {
             var action = actions[i];

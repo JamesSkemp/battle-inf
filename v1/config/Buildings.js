@@ -73,7 +73,7 @@ var Buildings = [
         }
         ,onDemolish: function(index) {
             player.removeHeroInTraining(index);
-            
+
             // Correct all other heroes
             for (var i in player.heroes)
                 if (player.heroes[i].trainingAreaIndex > index)
@@ -94,14 +94,9 @@ var getBuildingByName = function(name) {
     for (var i in Buildings)
         if (Buildings[i].name === name)
             return Buildings[i];
-    
+
     return null;
 };
-
-
-
-
-
 
 var TrainingOptions = {
     attack: {

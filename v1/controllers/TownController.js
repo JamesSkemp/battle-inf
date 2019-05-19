@@ -1,14 +1,14 @@
 app.controller('TownController', function($scope, $window, messageService) {
     $scope.$parent.header = 'TOWN';
-    
+
     $scope.addNumberCommas = addNumberCommas;
     $scope.buildings = Buildings;
-    
+
     for (var i in $scope.buildings)
         $scope.buildings[i].collapsed = true;
-    
+
     $scope.upgrades = Upgrades;
-    
+
     $scope.buildNew = function(building) {
         if (player.money >= building.cost)
         {
@@ -23,7 +23,7 @@ app.controller('TownController', function($scope, $window, messageService) {
             }
         }
     };
-    
+
     $scope.sellBuilding = function(building, $index) {
         if (!building.cannotSell)
         {
@@ -33,29 +33,29 @@ app.controller('TownController', function($scope, $window, messageService) {
             player.landUsed -= building.space;
         }
     };
-    
+
     $scope.upgradeBuilding = function(playerBuilding, target) {
         var building = getBuildingByName(playerBuilding.name);
         var cost = building.upgradeCost * playerBuilding.level;
-        
+
         if (player.money >= cost)
         {
             playerBuilding.level++;
             player.money -= cost;
             player.calculateGPM();
-            
+
             $(target).qtip('option', 'content.text', '$' + addNumberCommas(building.upgradeCost * playerBuilding.level)); // Preferred
         }
     };
-    
+
     $scope.landProgressPercent = function() {
         var percent = Math.round(player.landProgress * 100);
         return percent < 100 ? percent : 100;
     };
-    
-    
-    
-    
+
+
+
+
     angular.element($window).bind('scroll', function() {
         if (this.pageYOffset > 0) {
             $('#main_header').addClass('fixed');
@@ -65,7 +65,7 @@ app.controller('TownController', function($scope, $window, messageService) {
             $('#main_header').removeClass('fixed');
         }
     });
-    
+
     $scope.$on('$locationChangeStart', function(event) {
         angular.element($window).unbind('scroll');
     });

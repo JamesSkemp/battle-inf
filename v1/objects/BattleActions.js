@@ -1,10 +1,10 @@
 var BattleActions = function() {
     this.currentPerformingParty = null;
     this.currentPerformingUnit = null;
-    
+
     this.selectedOpponent = null;
     this.selectedAlly = null;
-    
+
     this.getTargetFromSelector = function(targetSelector)
     {
         var target = null;
@@ -26,7 +26,7 @@ var BattleActions = function() {
 
         if (!target)
             return false;
-        
+
         // Perform the action
         if (action === 'Attack')
             this.currentPerformingUnit.attack(target, 1);
@@ -34,7 +34,7 @@ var BattleActions = function() {
             this.currentPerformingUnit.defend();
         if (action === 'Use Skill') // Skills can return false if the unit does not have the SP
             return this.currentPerformingUnit.useSkillOn(extra1, target);
-        
+
         return true;
     };
 
@@ -63,11 +63,11 @@ var BattleActions = function() {
     this.targetHasStatusEffect = function(targetSelector, effectName)
     {
         var target = this.getTargetFromSelector(targetSelector);
-        
+
         if (target !== null)
             if (target.battleStatusEffects[effectName])
                 return true;
-        
+
         return false;
     };
 
@@ -106,7 +106,7 @@ var BattleActions = function() {
 
             return selectedUnit;
         }
-        
+
         return null;
     };
 
@@ -135,7 +135,7 @@ var BattleActions = function() {
                 selectedUnit = this.findUnitWithStatusEffect(units, extra1);
                 break;
         }
-        
+
         // Decide which unit selection to set
         if (type === 'Ally')
             this.selectedAlly = selectedUnit;
