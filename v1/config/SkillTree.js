@@ -28,7 +28,6 @@ var usableSkillTree = {
         }
     }
 
-
     ,'Ignite': {
         req:[]
         ,reqLevel:[]
