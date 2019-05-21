@@ -67,7 +67,9 @@ b {
     width:80%;
     position:relative;
 }
-
+#left_container {
+    clear:both;
+}
 
 #loading_view
 {
