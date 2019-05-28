@@ -1,34 +1,28 @@
+/*
 #battle_log
 {
-    width:25%;
-    position:fixed;
-    top:0px;
-    bottom:0px;
-    overflow:visible;
+	height: 100vh;
 }
+*/
 
-#battle_log .title
+#battle_log_title
 {
-    font-size:20px;
-    margin-bottom:5px;
-    padding-bottom:5px;
-    border-bottom:1px solid #666;
+	font-size:20px;
+	margin-bottom:5px;
+	padding-bottom:5px;
+	border-bottom:1px solid #666;
+	text-transform: uppercase;
 }
 
 #battle_log_content
 {
-    overflow-y:scroll;
-    position:absolute;
-    top:40px;
-    bottom:0px;
-    width:100%;
-    padding-right:10px;
+	width:100%;
+	padding-right:10px;
 }
-
 #battle_log_content *
 {
-    color:#CCC;
-    font-size:11px;
+	color:#ccc;
+	font-size: 1em;
 }
 
 #battle_log_content b
@@ -48,7 +42,7 @@
 #battle_log .emphasize:after
 {
     float:right;
-    color:#FFFFFF;
+    color:#fff;
     margin-top:-4px;
     margin-right:-5px;
     font-family:FontAwesome;
