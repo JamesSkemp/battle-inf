@@ -10,7 +10,7 @@ app.controller('ActionsController', function($scope, $routeParams, messageServic
 
         player.log('This is where you can customize how each hero behaves in battle.');
         player.log('A tutorial on how the logic works and can be put together is <b>in the works</b>.'
-                    + 'The most important thing to know is that you should alwasy <b>select an opponent</b> and then <b>perform an action on it</b>.');
+                    + 'The most important thing to know is that you should always <b>select an opponent</b> and then <b>perform an action on it</b>.');
         player.log('<a href="#wiki" class="button disabled" target="_blank">Actions Wiki</a>');
         player.log('The current setup simply selects the opponent with the least HP and attacks it.');
 
