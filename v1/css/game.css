@@ -36,6 +36,9 @@ body {
 h1 {
 	font-size: 2.5rem;
 }
+tbody, tbody tr:nth-child(even) {
+	background-color: transparent;
+}
 /*
 a {
     text-decoration:none;

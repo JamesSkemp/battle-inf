@@ -110,57 +110,60 @@
 						</div>
 					</div>
 					<div class="cell medium-8 medium-cell-block-y">
-						<div class="grid-x grid-padding-x tab_bar">
-							<div class="cell medium-7 medium-cell-block-y">
-								<h2 class="view_header">
-									{{header}}
-								</h2>
-							</div>
-							<div class="cell medium-5 medium-cell-block-y">
-								<div class="cell">
-									<div style="height:28px;overflow:visible;width:80px;float:left;position:relative;z-index:5;margin-right:3px;">
-										<div class="multi_items">
-											<button class="button" ng-class="{selected:player.inBattle,red:!player.inBattle}" ng-click="startBattle();" style="width:80px;height:28px;">
-												{{player.inBattle ? 'Battling' : 'Start Battle'}}
-											</button>
-											<div style="background:#555;width:100%;">
-												<div style="text-align:center;float:left;padding-top:7px;width:52px;">
-													Level
-													<br>
-													<span style="font-size:20px;">{{player.battleLevel}}</span>
+						<div class="grid-y medium-grid-frame">
+
+							<div class="grid-x grid-padding-x tab_bar">
+								<div class="cell medium-7 medium-cell-block-y">
+									<h2 class="view_header">
+										{{header}}
+									</h2>
+								</div>
+								<div class="cell medium-5 medium-cell-block-y">
+									<div class="cell">
+										<div style="height:28px;overflow:visible;width:80px;float:left;position:relative;z-index:5;margin-right:3px;">
+											<div class="multi_items">
+												<button class="button" ng-class="{selected:player.inBattle,red:!player.inBattle}" ng-click="startBattle();" style="width:80px;height:28px;">
+													{{player.inBattle ? 'Battling' : 'Start Battle'}}
+												</button>
+												<div style="background:#555;width:100%;">
+													<div style="text-align:center;float:left;padding-top:7px;width:52px;">
+														Level
+														<br>
+														<span style="font-size:20px;">{{player.battleLevel}}</span>
+													</div>
+													<div style="float:right;">
+														<button class="button" ng-click="increaseBattleLevel()">
+															<i class="fa fa-arrow-up" style="color:inherit"></i>
+														</button>
+														<br>
+														<button class="button" ng-click="decreaseBattleLevel()">
+															<i class="fa fa-arrow-down" style="color:inherit"></i>
+														</button>
+													</div>
+													<div style="clear:both;"></div>
 												</div>
-												<div style="float:right;">
-													<button class="button" ng-click="increaseBattleLevel()">
-														<i class="fa fa-arrow-up" style="color:inherit"></i>
-													</button>
-													<br>
-													<button class="button" ng-click="decreaseBattleLevel()">
-														<i class="fa fa-arrow-down" style="color:inherit"></i>
-													</button>
-												</div>
-												<div style="clear:both;"></div>
 											</div>
 										</div>
+										<div style="display:inline-block;">
+											<button class="button" ng-click="player.paused = !player.paused" ng-class="{selected:player.paused}">
+												<i class="fa fa-pause" style="color:inherit"></i>
+											</button>
+										</div>
+										<div style="display:inline-block;">
+											<button class="button" ng-click="player.endlessMode = !player.endlessMode" ng-class="{selected:player.endlessMode}" ng-show="player.unlock.endlessMode">Endless</button>
+										</div>
+										<span ng-if="debug">
+											<button class="button" ng-click="save();messageService.appendMessage('Game Saved!')">Save</button>
+											<button class="button" ng-click="reset()">Reset</button>
+										</span>
 									</div>
-									<div style="display:inline-block;">
-										<button class="button" ng-click="player.paused = !player.paused" ng-class="{selected:player.paused}">
-											<i class="fa fa-pause" style="color:inherit"></i>
-										</button>
-									</div>
-									<div style="display:inline-block;">
-										<button class="button" ng-click="player.endlessMode = !player.endlessMode" ng-class="{selected:player.endlessMode}" ng-show="player.unlock.endlessMode">Endless</button>
-									</div>
-									<span ng-if="debug">
-										<button class="button" ng-click="save();messageService.appendMessage('Game Saved!')">Save</button>
-										<button class="button" ng-click="reset()">Reset</button>
-									</span>
 								</div>
 							</div>
-						</div>
-						<!--<h2>Independent scrolling body</h2>-->
-						<div style="padding-bottom:10px;" data-sticky-container class="sticky-container">
-							<!-- HEADER -->
-							<div class="cell" ng-view id="left_container"></div>
+							<!--<h2>Independent scrolling body</h2>-->
+							<div style="padding-bottom:10px;">
+								<!-- HEADER -->
+								<div class="cell" ng-view id="left_container"></div>
+							</div>
 						</div>
 					</div>
 				</div>
