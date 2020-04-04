@@ -4,7 +4,7 @@
   "description": "This project is a fork of [version 1 of Battle INF](https://github.com/zephren/battle-inf).",
   "main": "index.js",
   "scripts": {
-	"lint": "eslint --fix-dry-run v1",
+    "lint": "eslint --fix-dry-run v1",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -16,6 +16,6 @@
   },
   "homepage": "https://github.com/JamesSkemp/battle-inf#readme",
   "devDependencies": {
-    "eslint": "^5.16.0"
+    "eslint": "^6.8.0"
   }
 }

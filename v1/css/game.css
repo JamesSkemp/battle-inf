@@ -75,6 +75,9 @@ b {
     opacity:0;
 }
 
+#left_container {
+    clear:both;
+}
 #loading_view
 {
     transition: opacity 2s ease-in-out;

@@ -43,7 +43,7 @@ var baseMonster = function(genProperties) {
         // Pick a random name if needed
         if (!genProperties.name)
         {
-            var levelNames = levelNames[randomInt(0, mLevelNames.length - 1)];
+            var levelNames = mLevelNames[randomInt(0, mLevelNames.length - 1)];
             var r = randomInt(0, levelNames.names.length - 1);
             genProperties.name = levelNames.names[r];
         }
