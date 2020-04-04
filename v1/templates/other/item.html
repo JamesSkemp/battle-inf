@@ -1,64 +1,63 @@
 <div class="item" ng-class="{item_short_display:listItem.item.collapsed}">
-    <div>
-        <span ng-if="itemTypes[item.type][item.subType].slots" style="float:right;font-size:14px;">
-            {{itemTypes[item.type][item.subType].slots}}H
-        </span>
-        <span class="rarity_{{item.rarity}}" style="font-size:14px;font-weight:bold;">
-            {{item.name}}
-        </span>
-        <span class="gray_text" style="font-size:14px;padding-left:10px;">Lv. {{item.level}}</span>
-    </div>
-    
-    <div style="clear:both;"></div>
-    
-    <div style="float:right;padding-top:2px;">
-        <span ng-repeat="button in buttons">
-            <button class="button" ng-if="button === 'equip'" ng-click="hero.equip(item)">Equip</button>
-            <button class="button" ng-if="button === 'unequip'" ng-click="hero.unequip(item)">Unequip</button>
-            <button class="button" ng-if="button === 'compare'" ng-click="compareItem.item = item">Compare</button>
-            <button class="button" ng-if="button === 'sell'" ng-click="sellItem(item)">Sell ( {{addNumberCommas(Math.floor(item.moneyValue * 0.4))}} )</button>
-            <button class="button" ng-if="button === 'select'" ng-click="selectItem(item)" ng-class="{selected:itemIsSelected(item)}">
-                <i class="fa fa-check" style="color:inherit"></i>
-            </button>
-            <button class="button" ng-if="button === 'buy'" ng-click="buyItem(item)">Buy ( {{addNumberCommas(item.moneyValue)}} )</button>
-        </span>
-    </div>
-    
-    <!-- ng-repeat of the stats causes angular to throw infinite digest error -->
-    <div style="float:left;margin-right:20px;">
-        <div class="gray_text">HP</div>
-        <b ng-if="item.stats.hp > 0">{{item.stats.hp}}</b>
-        <span ng-if="item.stats.hp === 0" class="darkgray_text">{{item.stats.hp}}</span>
-    </div>
-    
-    <div style="float:left;margin-right:20px;">
-        <div class="gray_text">SP</div>
-        <b ng-if="item.stats.sp > 0">{{item.stats.sp}}</b>
-        <span ng-if="item.stats.sp === 0" class="darkgray_text">{{item.stats.sp}}</span>
-    </div>
-    
-    <div style="float:left;margin-right:20px;">
-        <div class="gray_text">ATK</div>
-        <b ng-if="item.stats.attack > 0">{{item.stats.attack}}</b>
-        <span ng-if="item.stats.attack === 0" class="darkgray_text">{{item.stats.attack}}</span>
-    </div>
-    
-    <div style="float:left;margin-right:20px;">
-        <div class="gray_text">DEF</div>
-        <b ng-if="item.stats.defense > 0">{{item.stats.defense}}</b>
-        <span ng-if="item.stats.defense === 0" class="darkgray_text">{{item.stats.defense}}</span>
-    </div>
-    
-    <div style="float:left;margin-right:20px;">
-        <div class="gray_text">DEX</div>
-        <b ng-if="item.stats.dexterity > 0">{{item.stats.dexterity}}</b>
-        <span ng-if="item.stats.dexterity === 0" class="darkgray_text">{{item.stats.dexterity}}</span>
-    </div>
-    
-    <div style="float:left;margin-right:20px;">
-        <div class="gray_text">MAG</div>
-        <b ng-if="item.stats.magic > 0">{{item.stats.magic}}</b>
-        <span ng-if="item.stats.magic === 0" class="darkgray_text">{{item.stats.magic}}</span>
-    </div>
-    
+	<div>
+		<span ng-if="itemTypes[item.type][item.subType].slots" style="float:right;font-size:14px;">
+			{{itemTypes[item.type][item.subType].slots}}H
+		</span>
+		<span class="rarity_{{item.rarity}}" style="font-size:14px;font-weight:bold;">
+			{{item.name}}
+		</span>
+		<span class="gray_text" style="font-size:14px;padding-left:10px;">Lv. {{item.level}}</span>
+	</div>
+
+	<div style="clear:both;"></div>
+
+	<div style="float:right;padding-top:2px;">
+		<span ng-repeat="button in buttons">
+			<button class="button" ng-if="button === 'equip'" ng-click="hero.equip(item)">Equip</button>
+			<button class="button" ng-if="button === 'unequip'" ng-click="hero.unequip(item)">Unequip</button>
+			<button class="button" ng-if="button === 'compare'" ng-click="compareItem.item = item">Compare</button>
+			<button class="button" ng-if="button === 'sell'" ng-click="sellItem(item)">Sell ( {{addNumberCommas(Math.floor(item.moneyValue * 0.4))}} )</button>
+			<button class="button" ng-if="button === 'select'" ng-click="selectItem(item)" ng-class="{selected:itemIsSelected(item)}">
+				<i class="fa fa-check" style="color:inherit"></i>
+			</button>
+			<button class="button" ng-if="button === 'buy'" ng-click="buyItem(item)">Buy ( {{addNumberCommas(item.moneyValue)}} )</button>
+		</span>
+	</div>
+
+	<!-- ng-repeat of the stats causes angular to throw infinite digest error -->
+	<div style="float:left;margin-right:20px;">
+		<div class="gray_text">HP</div>
+		<b ng-if="item.stats.hp > 0">{{item.stats.hp}}</b>
+		<span ng-if="item.stats.hp === 0" class="darkgray_text">{{item.stats.hp}}</span>
+	</div>
+
+	<div style="float:left;margin-right:20px;">
+		<div class="gray_text">SP</div>
+		<b ng-if="item.stats.sp > 0">{{item.stats.sp}}</b>
+		<span ng-if="item.stats.sp === 0" class="darkgray_text">{{item.stats.sp}}</span>
+	</div>
+
+	<div style="float:left;margin-right:20px;">
+		<div class="gray_text">ATK</div>
+		<b ng-if="item.stats.attack > 0">{{item.stats.attack}}</b>
+		<span ng-if="item.stats.attack === 0" class="darkgray_text">{{item.stats.attack}}</span>
+	</div>
+
+	<div style="float:left;margin-right:20px;">
+		<div class="gray_text">DEF</div>
+		<b ng-if="item.stats.defense > 0">{{item.stats.defense}}</b>
+		<span ng-if="item.stats.defense === 0" class="darkgray_text">{{item.stats.defense}}</span>
+	</div>
+
+	<div style="float:left;margin-right:20px;">
+		<div class="gray_text">DEX</div>
+		<b ng-if="item.stats.dexterity > 0">{{item.stats.dexterity}}</b>
+		<span ng-if="item.stats.dexterity === 0" class="darkgray_text">{{item.stats.dexterity}}</span>
+	</div>
+
+	<div style="float:left;margin-right:20px;">
+		<div class="gray_text">MAG</div>
+		<b ng-if="item.stats.magic > 0">{{item.stats.magic}}</b>
+		<span ng-if="item.stats.magic === 0" class="darkgray_text">{{item.stats.magic}}</span>
+	</div>
 </div>
