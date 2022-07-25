@@ -39,11 +39,12 @@ var basePlayer = function() {
             this.battleLog.splice(0, 1);
         this.battleLog.push({m:message});
 
-        var scrollHeight = $('#battle_log_content')[0].scrollHeight;
+		var scrollHeight = $('#battle_log_cell')[0].scrollHeight;
+		//console.log(scrollHeight);
 
         // some jQuery to animate the log scroll
-        if(!$('#battle_log_content').is(':animated'))
-            $('#battle_log_content').animate({scrollTop: scrollHeight}, 'slow');
+        if(!$('#battle_log_cell').is(':animated'))
+            $('#battle_log_cell').animate({scrollTop: scrollHeight}, 'slow');
     };
 
     this.clearLog = function() {
