@@ -16,6 +16,6 @@
   },
   "homepage": "https://github.com/JamesSkemp/battle-inf#readme",
   "devDependencies": {
-    "eslint": "^8.20.0"
+    "eslint": "^8.50.0"
   }
 }
