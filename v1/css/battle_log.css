@@ -1,9 +1,5 @@
 #battle_log
 {
-    width:25%;
-    position:fixed;
-    top:0px;
-    bottom:0px;
     overflow:visible;
 }
 
@@ -18,9 +14,7 @@
 #battle_log_content
 {
     overflow-y:scroll;
-    position:absolute;
-    top:40px;
-    bottom:0px;
+    height: 90vh;
     width:100%;
     padding-right:10px;
 }
